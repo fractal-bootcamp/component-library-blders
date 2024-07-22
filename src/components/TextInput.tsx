@@ -68,7 +68,7 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
     `;
 
     if (!placeholderText) {
-        placeholderText = "Enter text here...";
+        placeholderText = isPassword ? "Enter password..." : "Enter text here...";
     }
 
     return (
