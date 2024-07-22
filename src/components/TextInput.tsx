@@ -1,7 +1,7 @@
 
 type TextInputProps = {
     value: string;
-    onChange: Function;
+    onChange: (value: string) => void;
     placeholderText?: string;
     isPassword?: boolean;
     isDisabled?: boolean;
