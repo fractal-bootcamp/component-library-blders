@@ -3,7 +3,7 @@ import "../index.css";
 interface TooltipProps {
   children: React.ReactNode; //the page elements being wrapped which should display tooltip when hovered
   tipContent: React.ReactNode; //the text/other content to render in the tooltip, passed in as a text/JSX/whatever prop
-  position: "top" | "bottom" | "left" | "right" | "cursor"; //the position of the tooltip relative to the wrapped element
+  position: "top" | "bottom" | "left" | "right"; //the position of the tooltip relative to the wrapped element
 }
 export default function Tooltip({
   children,
