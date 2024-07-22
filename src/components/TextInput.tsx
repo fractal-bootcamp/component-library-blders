@@ -1,37 +1,5 @@
-import { IconType } from "react-icons";
-import {
-    BiLockAlt,
-    BiAt,
-    BiCheese,
-    BiCreditCard,
-    BiDollar,
-    BiEuro,
-    BiLogoReddit,
-    BiSolidMessageAltError,
-    BiCheck,
-} from "react-icons/bi";
+import { TextIcon, icons } from "./TextIcon";
 
-type IconOption = "lock" | "at" | "cheese" | "card" | "dollar" | "euro" | "reddit" | "error" | "check";
-
-
-const iconLookup = (name: string | undefined): IconType | null => {
-
-    if (!name) return null
-
-    const icons: { [key in IconOption]: IconType } = {
-        lock: BiLockAlt,
-        at: BiAt,
-        cheese: BiCheese,
-        card: BiCreditCard,
-        dollar: BiDollar,
-        euro: BiEuro,
-        reddit: BiLogoReddit,
-        error: BiSolidMessageAltError,
-        check: BiCheck,
-    };
-
-    return icons[name as IconOption] || null;
-}
 
 type TextInputProps = {
     value: string;
@@ -39,36 +7,28 @@ type TextInputProps = {
     placeholderText?: string;
     isPassword?: boolean;
     isDisabled?: boolean;
-    prefixIcon?: IconOption;
-    suffixIcon?: IconOption;
+    prefixIcon?: keyof typeof icons;
+    suffixIcon?: keyof typeof icons;
     validationState?: "error" | "success" | null;
     autoIcons?: boolean;
 }
 
 /**
- * Features and Props:
+ * TextInput Component
  * 
- * - Supports validation states such as error and success.
- * - Allows toggling of hidden password option.
- * - Ability to set the input field as disabled.
- * - Option to include prefix and suffix icons.
- * - Supports popover info icon.
- * - Placeholder text can be customized.
- * - Provides value and onChange handler for input control.
+ * Still to add in Animations:
  * 
- * Default Animations:
+ * - Focus: border color change, shadow effect.
+ * - Error: shake animation.
  * 
- * - Focus animation includes border color change and slight shadow effect.
- * - Shake animation triggered on validation error.
- * 
- * @param {string} value - The current value of the input field.
- * @param {Function} onChange - The function to handle changes in the input field.
- * @param {string} placeholderText - The text to display as a placeholder in the input field.
- * @param {boolean} isPassword - Indicates if the input field should be of type password.
- * @param {boolean} isDisabled - Indicates if the input field should be disabled.
- * @param {string} prefixIcon - The icon to display as a prefix in the input field.
- * @param {string} suffixIcon - The icon to display as a suffix in the input field.
- * @param {"error" | "success" | null } validationState - The validation state of the input field.
+ * @param {string} value - Current input value.
+ * @param {Function} onChange - Handles input changes.
+ * @param {string} placeholderText - Placeholder text.
+ * @param {boolean} isPassword - Password input type.
+ * @param {boolean} isDisabled - Disabled input field.
+ * @param {string} prefixIcon - Prefix icon.
+ * @param {string} suffixIcon - Suffix icon.
+ * @param {"error" | "success" | null } validationState - Validation state.
  * 
  * @returns {JSX.Element} 
  */
@@ -84,76 +44,74 @@ export const TextInput = ({
     autoIcons = true
 }: TextInputProps) => {
 
+    // Use placeholder text if provided, otherwise use something appropriate
+    const placeholderTextFinal = placeholderText
+        ? placeholderText
+        : isPassword
+            ? "Enter password..."
+            : "Enter text here...";
 
+    // Use prefix icon on the Left if provided, or else another icon if appropriate
+    const LeftIcon = prefixIcon ? (
+        <TextIcon type={prefixIcon} />
+    ) : (autoIcons && isPassword ? (
+        <TextIcon type="lock" />
+    ) : null
+    );
 
-    // Let's show some default icons if autoIcons is true
-    if (autoIcons && !prefixIcon && isPassword) {
-        prefixIcon = "lock"
-    }
-    if (autoIcons && !suffixIcon && validationState === "success") {
-        suffixIcon = "check"
-    }
-    if (autoIcons && !suffixIcon && validationState === "error") {
-        suffixIcon = "error"
-    }
+    // Use suffix icon on the Right if provided, or else another icon if appropriate
+    const RightIcon = suffixIcon ? (
+        <TextIcon type={suffixIcon} />
+    ) : (autoIcons && validationState === "success" ? (
+        <TextIcon type="check" color="green" />
+    ) : (autoIcons && validationState === "error" ? (
+        <TextIcon type="error" color="red" />
+    ) : null));
 
-    const PrefixIconObject: IconType | null = iconLookup(prefixIcon)
-
-    const SuffixIconObject: IconType | null = iconLookup(suffixIcon)
-
-
+    // Border is green for success, red for problems
+    const borderColor = validationState === "success"
+        ? "border-green-500"
+        : validationState === "error"
+            ? "border-red-500"
+            : "border-slate-500";
 
     const containerStyle = `
         relative 
         flex 
         flex-col 
         flex-grow 
-        rounded-lg 
-        m-2 
+    
+        
 
     `;
-
-    // Padding notes:
-    // w-6 + m-3 + m-3 = *-12 (48px) on the icon
-    // this must equal the pl-12 or pr-12 padding used in inputPadding box when icon appears
-    // 
-    // Transform notes:
-    // top-1/2 puts top edge at 50% of containing element's height
-    // transform -translate-y-1/2 ...translates element vertically by -50% of its own height
-    const iconStyle = "h-6 w-6 mx-3 top-1/2 transform -translate-y-1/2";
 
     const inputPadding = `
         rounded-lg 
         p-3 
-        ${prefixIcon ? "pl-12" : ""} 
-        ${suffixIcon ? "pr-12" : ""}
+        m-3
+        flex-grow 
+        ${LeftIcon ? "pl-12" : ""} 
+        ${RightIcon ? "pr-12" : ""}
         border border-2
-        ${validationState === "success" ? "border-green-500" : ""} 
-        ${validationState === "error" ? "border-red-500" : ""}
-        ${!validationState ? "border-slate-500" : ""}
-
-
+        ${borderColor} 
     `;
 
-    if (!placeholderText) {
-        placeholderText = isPassword ? "Enter password..." : "Enter text here...";
-    }
-
-    const iconColor = validationState === "error" ? "#ef4444" : validationState === "success" ? "#22c55e" : undefined;
 
     return (
         <>
             <div className={containerStyle}>
-                {prefixIcon && PrefixIconObject && <PrefixIconObject color={iconColor} className={`${iconStyle} absolute left-0`} />}
-                <input
-                    type={isPassword ? "password" : "text"}
-                    value={value}
-                    onChange={(e) => onChange(e.target.value)}
-                    placeholder={placeholderText}
-                    disabled={isDisabled}
-                    className={inputPadding}
-                />
-                {suffixIcon && SuffixIconObject && <SuffixIconObject color={iconColor} className={`${iconStyle} absolute right-0`} />}
+                <div className="relative flex flex-row items-center">
+                    {LeftIcon && <div className="absolute left-3">{LeftIcon}</div>}
+                    <input
+                        type={isPassword ? "password" : "text"}
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder={placeholderTextFinal}
+                        disabled={isDisabled}
+                        className={`${inputPadding} ${LeftIcon ? "pl-12" : ""} ${RightIcon ? "pr-12" : ""}`}
+                    />
+                    {RightIcon && <div className="absolute right-3">{RightIcon}</div>}
+                </div>
             </div>
         </>
     );
