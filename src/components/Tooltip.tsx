@@ -12,13 +12,13 @@ export default function Tooltip({ children, content, position }: TooltipProps) {
   const positionClass = useMemo(
     () =>
       position === "top"
-        ? "absolute top-0 -transform-y-full"
+        ? "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full"
         : position === "bottom"
-          ? "absolute bottom-0"
+          ? "absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full"
           : position === "left"
-            ? "absolute left-0 top-1/2 transform -translate-x-full"
+            ? "absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
             : position === "right"
-              ? "absolute top-1/2 transform"
+              ? "absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full"
               : "",
     [position]
   );
@@ -31,7 +31,7 @@ export default function Tooltip({ children, content, position }: TooltipProps) {
       {/* The tooltip */}
       {show && (
         <div
-          className={`${positionClass} bg-gray-800 text-white p-2 rounded-md shadow-lg`}
+          className={`${positionClass} flex justify-center items-center text-center bg-gray-800 text-white p-2 rounded-md shadow-lg`}
         >
           {content}
         </div>
