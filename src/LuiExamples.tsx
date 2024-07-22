@@ -4,8 +4,8 @@ import { TextInput } from "./components/TextInput";
 export const LuiExamples = () => {
 
     const [dummyInputText, setDummyInputText] = useState<string>("")
-    const headerStyle = "text-4xl text-blue-500 font-bold underline";
-    const subheadStyle = "text-xl text-purple-700 font-bold";
+    const headerStyle = "text-4xl text-teal-500 font-bold m-3";
+    const subheadStyle = "text-xl text-purple-700 font-bold m-3";
     const sampleIcon = "icon.png"
 
     return (

@@ -39,13 +39,15 @@ type TextInputProps = {
  */
 export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisabled, prefixIcon, suffixIcon, validationState }: TextInputProps) => {
 
-    const sharedStyle = "rounded border p-2 m-2";
+    // Styles for Container
+    const sharedStyle = "flex rounded border m-2";
     const regStyle = sharedStyle;
     const successStyle = sharedStyle + " border-green-500";
     const errorStyle = sharedStyle + " border-red-500";
 
-    const iconSpan = "inline-block";
-    const iconImg = "h-4 w-4";
+    const activeStyle = (validationState === "error") ? errorStyle : validationState === "success" ? successStyle : regStyle
+
+    const iconImg = "h-6 w-6 m-2";
 
     if (!placeholderText) {
         placeholderText = "Enter text here...";
@@ -53,21 +55,23 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
 
     return (
         <>
-            <div>
-                {prefixIcon && <span className={iconSpan}>
-                    <img src={prefixIcon} alt="prefix icon" className={iconImg} />
-                </span>}
-                <input
-                    type={isPassword ? "password" : "text"}
-                    value={value}
-                    onChange={(e) => onChange(e.target.value)}
-                    placeholder={placeholderText}
-                    disabled={isDisabled}
-                    className={validationState === "error" ? errorStyle : validationState === "success" ? successStyle : regStyle}
-                />
-                {suffixIcon && <span className={iconSpan}>
-                    <img src={suffixIcon} alt="suffix icon" className={iconImg} />
-                </span>}
+            <div className={activeStyle}>
+                <div className="flex flex-col">
+                    {prefixIcon && <img src={prefixIcon} alt="prefix icon" className={iconImg} />}
+                </div>
+                <div className="flex flex-col">
+                    <input
+                        type={isPassword ? "password" : "text"}
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder={placeholderText}
+                        disabled={isDisabled}
+                        className="flex-grow p-3 rounded"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    {suffixIcon && <img src={suffixIcon} alt="suffix icon" className={iconImg} />}
+                </div>
             </div>
         </>
     );
