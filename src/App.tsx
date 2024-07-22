@@ -1,6 +1,8 @@
 import './index.css'
 import { FirstButton } from './components/Button'
 import { useState } from 'react'
+import { BiGame } from "react-icons/bi";
+
 
 function App() {
   const [isDisabled, setIsDisabled] = useState(false);
@@ -29,6 +31,8 @@ function App() {
           disabled={isDisabled}
           loading={isLoading}
           text={'Click me'}
+          icon={<BiGame />}
+          iconPosition='left'
           onClick={handleClick} />
       </div>
     </>
