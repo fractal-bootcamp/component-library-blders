@@ -86,9 +86,15 @@ export const TextInput = ({
 
 
 
-    // Let's show a lock for password input
+    // Let's show some default icons if autoIcons is true
     if (autoIcons && !prefixIcon && isPassword) {
         prefixIcon = "lock"
+    }
+    if (autoIcons && !suffixIcon && validationState === "success") {
+        suffixIcon = "check"
+    }
+    if (autoIcons && !suffixIcon && validationState === "error") {
+        suffixIcon = "error"
     }
 
     const PrefixIconObject: IconType | null = iconLookup(prefixIcon)
@@ -133,11 +139,12 @@ export const TextInput = ({
         placeholderText = isPassword ? "Enter password..." : "Enter text here...";
     }
 
+    const iconColor = validationState === "error" ? "#ef4444" : validationState === "success" ? "#22c55e" : undefined;
 
     return (
         <>
             <div className={containerStyle}>
-                {prefixIcon && PrefixIconObject && <PrefixIconObject className={`${iconStyle} absolute left-0`} />}
+                {prefixIcon && PrefixIconObject && <PrefixIconObject color={iconColor} className={`${iconStyle} absolute left-0`} />}
                 <input
                     type={isPassword ? "password" : "text"}
                     value={value}
@@ -146,7 +153,7 @@ export const TextInput = ({
                     disabled={isDisabled}
                     className={inputPadding}
                 />
-                {suffixIcon && SuffixIconObject && <SuffixIconObject className={`${iconStyle} absolute right-0`} />}
+                {suffixIcon && SuffixIconObject && <SuffixIconObject color={iconColor} className={`${iconStyle} absolute right-0`} />}
             </div>
         </>
     );
