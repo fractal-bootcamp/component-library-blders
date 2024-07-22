@@ -4,11 +4,17 @@ import { useState } from 'react'
 
 function App() {
   const [isDisabled, setIsDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleClick() {
+    setIsLoading(true);
     setIsDisabled(true);
-    setTimeout(() => { setIsDisabled(false) }, 1000);
     console.log('clicked');
+    setTimeout(() => {
+      setIsDisabled(false);
+      setIsLoading(false);
+    }
+      , 2000);
   }
 
   return (
@@ -17,8 +23,13 @@ function App() {
         <div className="text-3xl text-red font-bold underline">
           Hello world!
         </div>
-        <FirstButton disabled={isDisabled} text={'Click me'} onClick={handleClick} />
-        <button onClick={() => { setIsDisabled(false) }}>Cancel</button>
+        <FirstButton
+          variant='primary'
+          size='medium'
+          disabled={isDisabled}
+          loading={isLoading}
+          text={'Click me'}
+          onClick={handleClick} />
       </div>
     </>
   )

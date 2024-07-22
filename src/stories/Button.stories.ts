@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { FirstButton as Button } from "../components/Button";
+import { FirstButton as Button, ButtonProps } from "../components/Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Example/Button",
+  title: "Library/Button",
   component: Button,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -14,7 +14,14 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    backgroundColor: { control: "color" },
+    variant: {
+      control: "select",
+      options: ["primary", "secondary", "tertiary"],
+    },
+    size: { control: "select", options: ["small", "medium", "large"] },
+    disabled: { control: "boolean" },
+    loading: { control: "boolean" },
+    text: { control: "text" },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -26,27 +33,70 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    primary: true,
-    label: "Button",
+    variant: "primary",
+    size: "medium",
+    text: "Primary Button",
+    disabled: false,
+    loading: false,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    label: "Button",
+    variant: "secondary",
+    size: "medium",
+    text: "Secondary Button",
+    disabled: false,
+    loading: false,
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    variant: "tertiary",
+    size: "medium",
+    text: "Tertiary Button",
+    disabled: false,
+    loading: false,
   },
 };
 
 export const Large: Story = {
   args: {
+    variant: "primary",
     size: "large",
-    label: "Button",
+    text: "Large Button",
+    disabled: false,
+    loading: false,
   },
 };
 
 export const Small: Story = {
   args: {
+    variant: "primary",
     size: "small",
-    label: "Button",
+    text: "Small Button",
+    disabled: false,
+    loading: false,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    variant: "primary",
+    size: "medium",
+    text: "Loading Button",
+    disabled: false,
+    loading: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    variant: "primary",
+    size: "medium",
+    text: "Disabled Button",
+    disabled: true,
+    loading: false,
   },
 };
