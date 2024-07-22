@@ -13,19 +13,20 @@ export default function Tooltip({
   //TODO: render the children as a subdiv with an on-hover that renders the tooltip in the indicated position
   const [show, setShow] = useState(false);
   //string dynamically generating the proper positioning class for the tooltip, e.g. "absolute ..." with positioning placing the tooltip subelement in the indicated position
-  const positionClass = useMemo(
-    () =>
-      position === "top"
-        ? "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full"
-        : position === "bottom"
-          ? "absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full"
-          : position === "left"
-            ? "absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
-            : position === "right"
-              ? "absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full"
-              : "",
-    [position]
-  );
+  const positionClass = useMemo(() => {
+    switch (position) {
+      case "top":
+        return "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full";
+      case "bottom":
+        return "absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full";
+      case "left":
+        return "absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full";
+      case "right":
+        return "absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full";
+      default:
+        return "";
+    }
+  }, [position]);
   return (
     <div
       className="relative inline-block bg-slate-200"
