@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Tooltip from "../components/Tooltip";
+import React from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -19,10 +20,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Text: Story = {
+const imageContent = () =>
+  React.createElement("img", {
+    src: "https://picsum.photos/200/200",
+    alt: "placeholder"
+  });
+export const TextTip: Story = {
   args: {
     children: "Child Text",
-    content: "Tooltip Text",
+    tipContent: "Tooltip Text",
+    position: "top"
+  }
+};
+export const ImageTip: Story = {
+  args: {
+    children: "Child Text",
+    tipContent: imageContent(),
     position: "top"
   }
 };
