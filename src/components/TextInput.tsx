@@ -7,7 +7,7 @@ type TextInputProps = {
     isDisabled?: boolean;
     prefixIcon?: string;
     suffixIcon?: string;
-    validationState?: "null" | "error" | "success";
+    validationState?: "error" | "success" | null;
 }
 
 /**
