@@ -22,6 +22,7 @@ const meta = {
     disabled: { control: "boolean" },
     loading: { control: "boolean" },
     text: { control: "text" },
+    icon: { control: "select", options: ["rocket", "smile", "game"] },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -38,6 +39,8 @@ export const Primary: Story = {
     text: "Primary Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -48,6 +51,8 @@ export const Secondary: Story = {
     text: "Secondary Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -58,6 +63,8 @@ export const Tertiary: Story = {
     text: "Tertiary Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -68,6 +75,8 @@ export const Large: Story = {
     text: "Large Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -78,6 +87,8 @@ export const Small: Story = {
     text: "Small Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
