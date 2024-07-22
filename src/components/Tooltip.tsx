@@ -16,13 +16,13 @@ export default function Tooltip({
   const positionClass = useMemo(() => {
     switch (position) {
       case "top":
-        return "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full";
+        return "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+0.5rem)] ";
       case "bottom":
-        return "absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full";
+        return "absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[calc(100%+0.5rem)]";
       case "left":
-        return "absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full";
+        return "absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-[calc(100%+0.5rem)]";
       case "right":
-        return "absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full";
+        return "absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-[calc(100%+0.5rem)]";
       default:
         return "";
     }
@@ -32,10 +32,12 @@ export default function Tooltip({
       className="relative inline-block bg-slate-200"
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
+      onFocus={() => setShow(true)}
+      onBlur={() => setShow(false)}
     >
       {/* The tooltip */}
       <div
-        className={`${positionClass} ${show ? "" : "hidden"} flex justify-center items-center text-center w-max  bg-gray-800 text-white p-2 rounded-md shadow-lg`}
+        className={`${positionClass} ${show ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ease-in-out flex justify-center items-center text-center w-max  bg-gray-800 text-white p-2 rounded-md shadow-lg`}
       >
         {tipContent}
       </div>
