@@ -36,11 +36,13 @@ export default function Tooltip({
       onBlur={() => setShow(false)}
     >
       {/* The tooltip */}
-      <div
-        className={`${positionClass} ${show ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ease-in-out flex justify-center items-center text-center w-max  bg-gray-800 text-white p-2 rounded-md shadow-lg`}
-      >
-        {tipContent}
-      </div>
+      {tipContent && (
+        <div
+          className={`${positionClass} ${show ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ease-in-out flex justify-center items-center text-center w-max  bg-gray-800 text-white p-2 rounded-md shadow-lg`}
+        >
+          {tipContent}
+        </div>
+      )}
       {/* The children to be hovered */}
       {children}
     </div>
