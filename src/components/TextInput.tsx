@@ -39,13 +39,33 @@ type TextInputProps = {
  */
 export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisabled, prefixIcon, suffixIcon, validationState }: TextInputProps) => {
 
-    const sharedStyle = "rounded border p-2 m-2";
-    const regStyle = sharedStyle;
-    const successStyle = sharedStyle + " border-green-500";
-    const errorStyle = sharedStyle + " border-red-500";
+    const containerStyle = `
+        relative 
+        flex 
+        flex-col 
+        flex-grow 
+        rounded 
+        border 
+        m-2 
+        ${validationState === "success" ? "border-green-500" : ""} 
+        ${validationState === "error" ? "border-red-500" : ""}
+    `;
 
-    const iconSpan = "inline-block";
-    const iconImg = "h-4 w-4";
+    // Padding notes:
+    // w-6 + m-3 + m-3 = *-12 (48px) on the icon
+    // this must equal the pl-12 or pr-12 padding used in inputPadding box when icon appears
+    // 
+    // Transform notes:
+    // top-1/2 puts top edge at 50% of containing element's height
+    // transform -translate-y-1/2 ...translates element vertically by -50% of its own height
+    const iconStyle = "h-6 w-6 mx-3 top-1/2 transform -translate-y-1/2";
+
+    const inputPadding = `
+        rounded 
+        p-3 
+        ${prefixIcon ? "pl-12" : ""} 
+        ${suffixIcon ? "pr-12" : ""}
+    `;
 
     if (!placeholderText) {
         placeholderText = "Enter text here...";
@@ -53,21 +73,17 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
 
     return (
         <>
-            <div>
-                {prefixIcon && <span className={iconSpan}>
-                    <img src={prefixIcon} alt="prefix icon" className={iconImg} />
-                </span>}
+            <div className={containerStyle}>
+                {prefixIcon && <img src={prefixIcon} alt="input icon (prefix)" className={`${iconStyle} absolute left-0 `} />}
                 <input
                     type={isPassword ? "password" : "text"}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder={placeholderText}
                     disabled={isDisabled}
-                    className={validationState === "error" ? errorStyle : validationState === "success" ? successStyle : regStyle}
+                    className={inputPadding}
                 />
-                {suffixIcon && <span className={iconSpan}>
-                    <img src={suffixIcon} alt="suffix icon" className={iconImg} />
-                </span>}
+                {suffixIcon && <img src={suffixIcon} alt="input icon (suffix)" className={`${iconStyle} absolute right-0`} />}
             </div>
         </>
     );
