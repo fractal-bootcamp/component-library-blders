@@ -6,6 +6,9 @@ const meta = {
   component: TextInput,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
+    backgrounds: {
+      default: "dark",
+    },
     layout: "fullscreen",
   },
   argTypes: {
@@ -38,7 +41,7 @@ const meta = {
       description: "The icon to display as a suffix in the input field.",
     },
     validationState: {
-      control: { type: "select", options: ["null", "error", "success"] },
+      control: { type: "select", options: ["error", "success", "null"] },
       description: "The validation state of the input field.",
     },
   },
@@ -51,59 +54,50 @@ export const Default: Story = {
   args: {
     value: "",
     onChange: () => {},
-    placeholderText: "Enter text...",
   },
 };
 
 export const DisabledState: Story = {
   args: {
+    ...Default.args,
     value: "Disabled state",
-    onChange: () => {},
     isDisabled: true,
   },
 };
 
 export const PasswordInput: Story = {
   args: {
-    value: "",
-    onChange: () => {},
-    placeholderText: "Enter password",
+    ...Default.args,
     isPassword: true,
   },
 };
 
 export const ErrorState: Story = {
   args: {
-    value: "",
-    onChange: () => {},
-    placeholderText: "State = Error :(",
+    ...Default.args,
+    value: "Bad text",
     validationState: "error",
   },
 };
 
 export const SuccessState: Story = {
   args: {
-    value: "",
-    onChange: () => {},
-    placeholderText: "State = Success :)",
+    ...Default.args,
+    value: "Good text",
     validationState: "success",
   },
 };
 
 export const WithPrefixIcon: Story = {
   args: {
-    value: "",
-    onChange: () => {},
-    placeholderText: "prefixIcon",
-    prefixIcon: "sampleIcon",
+    ...Default.args,
+    prefixIcon: "icon.png",
   },
 };
 
 export const WithSuffixIcon: Story = {
   args: {
-    value: "",
-    onChange: () => {},
-    placeholderText: "suffixIcon",
-    suffixIcon: "sampleIcon",
+    ...Default.args,
+    suffixIcon: "icon.png",
   },
 };
