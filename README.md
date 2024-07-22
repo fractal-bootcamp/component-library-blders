@@ -141,3 +141,22 @@ A rating component for collecting user feedback with star or emoji ratings.
 - Disabled and read-only states
 - Star fill animation on rating.
 - Bounce effect on star hover.
+
+# PR Structure
+
+All components should be individually PR’d. A complete component should be PR’d into the main branch, but each component can be ~3 PRs - data (props, functionality), styling, and storybook integration. I strongly recommend completing the functionality first (data, props, functionality). It’s expected to be super ugly to start.
+
+- name/button-functionality -> name/button
+- name/button-styling -> name/button
+- name/button-storybook -> name/button
+- name/button -> main (get Jake to review this one)
+
+All PR feedback should be addressed before merging.
+PRs should include videos or screenshots to help reviewers preview expected behavior
+
+# Technologies to Use
+
+Icon Library - https://www.npmjs.com/package/react-icons
+Storybook - displaying the component library
+Framer - animations
+Tailwind
