@@ -24,16 +24,13 @@ function App() {
           Text Input
         </div>
         <div className={subheadStyle}>
-          Absolute bare minimum:
+          Default with minimum props (value & onChange):
         </div>
         <div>
-          <TextInput value="Simple" onChange={() => { }} />
+          <TextInput value={dummyInputText} onChange={setDummyInputText} />
         </div>
         <div className={subheadStyle}>
           Other states:
-        </div>
-        <div>
-          <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='Enter text here' />
         </div>
         <div>
           <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='Disabled state' isDisabled={true} />

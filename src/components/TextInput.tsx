@@ -44,11 +44,18 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
     const successStyle = sharedStyle + " border-green-500";
     const errorStyle = sharedStyle + " border-red-500";
 
+    const iconSpan = "inline-block";
+    const iconImg = "h-4 w-4";
+
+    if (!placeholderText) {
+        placeholderText = "Enter text here...";
+    }
+
     return (
         <>
             <div>
-                {prefixIcon && <span className="">
-                    <img src={prefixIcon} alt="prefix icon" className="h-4 w-4" />
+                {prefixIcon && <span className={iconSpan}>
+                    <img src={prefixIcon} alt="prefix icon" className={iconImg} />
                 </span>}
                 <input
                     type={isPassword ? "password" : "text"}
@@ -58,8 +65,8 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
                     disabled={isDisabled}
                     className={validationState === "error" ? errorStyle : validationState === "success" ? successStyle : regStyle}
                 />
-                {suffixIcon && <span className="">
-                    <img src={suffixIcon} alt="suffix icon" className="h-4 w-4" />
+                {suffixIcon && <span className={iconSpan}>
+                    <img src={suffixIcon} alt="suffix icon" className={iconImg} />
                 </span>}
             </div>
         </>
