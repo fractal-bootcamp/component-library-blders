@@ -25,7 +25,7 @@ export const Icon = ({ name }: { name: Icon }) => {
 
 export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = false, loading = false, onClick, text, icon, iconPosition = 'left' }: ButtonProps) => {
 
-    const baseClasses = 'flex justify-center px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none transition duration-150 ease-in-out transform hover:scale-105 active:scale-95'
+    const baseClasses = 'flex justify-center items-center px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none transition-scale duration-150 ease-in-out transform hover:scale-[102%] active:scale-[97%]'
 
     const variantClasses = {
         primary: 'text-white bg-blue-500 hover:bg-blue-700',
