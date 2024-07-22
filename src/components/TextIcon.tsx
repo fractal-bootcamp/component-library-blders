@@ -38,17 +38,18 @@ const iconColors = {
 type TextIconProps = {
     type: keyof typeof icons;
     color?: keyof typeof iconColors;
-    size?: number;
+    size?: "s" | "m" | 'l'
 }
 
-export const TextIcon = ({ type, color = "black", size = 6 }: TextIconProps) => {
+export const TextIcon = ({ type, color = "black", size = "m" }: TextIconProps) => {
 
     const IconObject = icons[type]
 
     const iconColor = iconColors[color]
 
-    // DANGER - dynamically constructed tailwind has a habit of failing
-    const iconStyle = `h-${size} w-${size} mx-3 flex items-center`
+    const sizeClass = size === "s" ? "h-3 w-3" : size === "m" ? "h-6 w-6" : "h-12 w-12";
+
+    const iconStyle = `${sizeClass} mx-3 flex items-center`
 
     return (
         <IconObject color={iconColor} className={iconStyle} />
