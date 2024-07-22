@@ -10,6 +10,7 @@ const meta = {
       default: "dark",
     },
     layout: "fullscreen",
+    controls: { sort: "requiredFirst" },
   },
   argTypes: {
     value: {
@@ -33,15 +34,18 @@ const meta = {
       description: "Indicates if the input field should be disabled.",
     },
     prefixIcon: {
-      control: "text",
+      control: "file",
+      accept: ".png",
       description: "The icon to display as a prefix in the input field.",
     },
     suffixIcon: {
-      control: "text",
+      control: "file",
+      accept: ".png",
       description: "The icon to display as a suffix in the input field.",
     },
     validationState: {
-      control: { type: "select", options: ["error", "success", "null"] },
+      control: "select",
+      options: ["error", "success", null],
       description: "The validation state of the input field.",
     },
   },

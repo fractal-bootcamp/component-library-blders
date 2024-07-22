@@ -33,7 +33,7 @@ type TextInputProps = {
  * @param {boolean} isDisabled - Indicates if the input field should be disabled.
  * @param {string} prefixIcon - The icon to display as a prefix in the input field.
  * @param {string} suffixIcon - The icon to display as a suffix in the input field.
- * @param {"null" | "error" | "success"} validationState - The validation state of the input field.
+ * @param {"error" | "success" | null } validationState - The validation state of the input field.
  * 
  * @returns {JSX.Element} 
  */
