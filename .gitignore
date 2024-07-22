@@ -3,6 +3,7 @@
 .env.test
 .env*
 !.env.example
+.storybook
 
 # Node.js
 node_modules/
@@ -78,3 +79,4 @@ dist
 ###################
 .DS_Store
 Thumbs.db
+*storybook.log
