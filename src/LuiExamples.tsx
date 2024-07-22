@@ -6,7 +6,7 @@ export const LuiExamples = () => {
     const [dummyInputText, setDummyInputText] = useState<string>("")
     const headerStyle = "text-4xl text-teal-500 font-bold m-3";
     const subheadStyle = "text-xl text-purple-700 font-bold m-3";
-    const sampleIcon = "icon.png"
+    const sampleIcon = "cheese"
 
     return (
         <>

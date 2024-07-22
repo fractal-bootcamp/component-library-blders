@@ -1,3 +1,37 @@
+import { IconType } from "react-icons";
+import {
+    BiLockAlt,
+    BiAt,
+    BiCheese,
+    BiCreditCard,
+    BiDollar,
+    BiEuro,
+    BiLogoReddit,
+    BiSolidMessageAltError,
+    BiCheck,
+} from "react-icons/bi";
+
+type IconOption = "lock" | "at" | "cheese" | "card" | "dollar" | "euro" | "reddit" | "error" | "check";
+
+
+const iconLookup = (name: string | undefined): IconType | null => {
+
+    if (!name) return null
+
+    const icons: { [key in IconOption]: IconType } = {
+        lock: BiLockAlt,
+        at: BiAt,
+        cheese: BiCheese,
+        card: BiCreditCard,
+        dollar: BiDollar,
+        euro: BiEuro,
+        reddit: BiLogoReddit,
+        error: BiSolidMessageAltError,
+        check: BiCheck,
+    };
+
+    return icons[name as IconOption] || null;
+}
 
 type TextInputProps = {
     value: string;
@@ -5,9 +39,10 @@ type TextInputProps = {
     placeholderText?: string;
     isPassword?: boolean;
     isDisabled?: boolean;
-    prefixIcon?: string;
-    suffixIcon?: string;
+    prefixIcon?: IconOption;
+    suffixIcon?: IconOption;
     validationState?: "error" | "success" | null;
+    autoIcons?: boolean;
 }
 
 /**
@@ -37,7 +72,30 @@ type TextInputProps = {
  * 
  * @returns {JSX.Element} 
  */
-export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisabled, prefixIcon, suffixIcon, validationState }: TextInputProps) => {
+export const TextInput = ({
+    value,
+    onChange,
+    placeholderText,
+    isPassword,
+    isDisabled,
+    prefixIcon,
+    suffixIcon,
+    validationState = null,
+    autoIcons = true
+}: TextInputProps) => {
+
+
+
+    // Let's show a lock for password input
+    if (autoIcons && !prefixIcon && isPassword) {
+        prefixIcon = "lock"
+    }
+
+    const PrefixIconObject: IconType | null = iconLookup(prefixIcon)
+
+    const SuffixIconObject: IconType | null = iconLookup(suffixIcon)
+
+
 
     const containerStyle = `
         relative 
@@ -75,10 +133,11 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
         placeholderText = isPassword ? "Enter password..." : "Enter text here...";
     }
 
+
     return (
         <>
             <div className={containerStyle}>
-                {prefixIcon && <img src={prefixIcon} alt="input icon (prefix)" className={`${iconStyle} absolute left-0 `} />}
+                {prefixIcon && PrefixIconObject && <PrefixIconObject className={`${iconStyle} absolute left-0`} />}
                 <input
                     type={isPassword ? "password" : "text"}
                     value={value}
@@ -87,7 +146,7 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
                     disabled={isDisabled}
                     className={inputPadding}
                 />
-                {suffixIcon && <img src={suffixIcon} alt="input icon (suffix)" className={`${iconStyle} absolute right-0`} />}
+                {suffixIcon && SuffixIconObject && <SuffixIconObject className={`${iconStyle} absolute right-0`} />}
             </div>
         </>
     );

@@ -34,13 +34,35 @@ const meta = {
       description: "Indicates if the input field should be disabled.",
     },
     prefixIcon: {
-      control: "file",
-      accept: ".png",
+      control: "select",
+      options: [
+        "lock",
+        "at",
+        "cheese",
+        "card",
+        "dollar",
+        "euro",
+        "reddit",
+        "error",
+        "check",
+        null,
+      ],
       description: "The icon to display as a prefix in the input field.",
     },
     suffixIcon: {
-      control: "file",
-      accept: ".png",
+      control: "select",
+      options: [
+        "lock",
+        "at",
+        "cheese",
+        "card",
+        "dollar",
+        "euro",
+        "reddit",
+        "error",
+        "check",
+        null,
+      ],
       description: "The icon to display as a suffix in the input field.",
     },
     validationState: {
@@ -95,13 +117,13 @@ export const SuccessState: Story = {
 export const WithPrefixIcon: Story = {
   args: {
     ...Default.args,
-    prefixIcon: "icon.png",
+    prefixIcon: "card",
   },
 };
 
 export const WithSuffixIcon: Story = {
   args: {
     ...Default.args,
-    suffixIcon: "icon.png",
+    suffixIcon: "cheese",
   },
 };
