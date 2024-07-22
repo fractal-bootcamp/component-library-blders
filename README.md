@@ -53,43 +53,51 @@ A dropdown menu for selecting options from a list.
 - Disabled state
 - Clear selection button
 - Keyboard navigation
-  Dropdown opening with a smooth height expansion.
-  Tooltip
-  A tooltip for displaying informative messages.
+- Dropdown opening with a smooth height expansion.
+
+## Tooltip
+
+A tooltip for displaying informative messages.
+
 - Customizable positions (top, bottom, left, right)
 - Trigger on hover or focus
 - Custom content rendering
 - Delay before showing/hiding
-  Fade in/fade out animation
-  Accordion
-  An accordion for collapsing and expanding sections of content.
+- Fade in/fade out animation
+
+## Accordion
+
+- An accordion for collapsing and expanding sections of content.
 - Multiple or single item expansion
 - Customizable headers
 - Default state
 - Nested accordions
-  Smooth height adjustment on expand/collapse
-  Chevron rotation on toggle.
+- Smooth height adjustment on expand/collapse
+- Chevron rotation on toggle.
 
-Skeleton Screen
+## Skeleton Screen
+
 A placeholder skeleton screen for loading states.
 
 - Skeleton shapes (rectangles, circles, lines)
 - Different sizes and layouts
 - Animation speed
-  Pulsing animation to indicate loading
-  Shimmer effect across skeleton elements
+- Pulsing animation to indicate loading
+- Shimmer effect across skeleton elements
 
-Alert
+## Alert
+
 A toast for transient messages.
 
 - Different type defaults (success, error, warning, info)
 - Auto-dismiss with customizable duration
 - Manual dismiss button
 - Display options for multiple notifications (all at once, queue, etc)
-  Slide-in from the top or bottom on show
-  Slide-out on dismiss
+- Slide-in from the top or bottom on show
+- Slide-out on dismiss
 
-Progress bar
+## Progress bar
+
 A progress bar to indicate the completion percentage of a task.
 
 - Color
@@ -97,19 +105,21 @@ A progress bar to indicate the completion percentage of a task.
 - Customizable progress percentage
 - Color customization based on progress
 - Striped and animated stripes option
-  Smooth progress increase animation
-  Pulse effect on completion.
+- Smooth progress increase animation
+- Pulse effect on completion.
 
-File Uploader
+## File Uploader
+
 A file uploader for uploading files with drag-and-drop support.
 
 - Drag-and-drop area
 - Multiple file upload support
 - File type validation
 - Error handling for unsupported files
-  Drop area highlight animation on file drag-over.
+- Drop area highlight animation on file drag-over.
 
-Timeline
+## Timeline
+
 A timeline component for displaying chronological events.
 
 - Vertical or horizontal orientation
@@ -117,10 +127,11 @@ A timeline component for displaying chronological events.
 - Detailed event descriptions on click or hover
 - Support for images and icons in events
 - Collapsible event groups
-  (Vertical) Slide-in animation for events on scroll.
-  Highlight animation on event hover.
+- (Vertical) Slide-in animation for events on scroll.
+- Highlight animation on event hover.
 
-Rating
+## Rating
+
 A rating component for collecting user feedback with star or emoji ratings.
 
 - Customizable rating scale (e.g., 1-5 stars)
@@ -128,5 +139,5 @@ A rating component for collecting user feedback with star or emoji ratings.
 - Different icons (stars, hearts, emojis)
 - Tooltip on hover for each rating level (Customizable description for each)
 - Disabled and read-only states
-  Star fill animation on rating.
-  Bounce effect on star hover.
+- Star fill animation on rating.
+- Bounce effect on star hover.
