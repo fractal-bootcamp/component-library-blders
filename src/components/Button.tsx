@@ -1,6 +1,4 @@
-import { ReactElement } from "react";
 import { BiGame, BiRocket, BiSmile } from "react-icons/bi";
-
 
 type Icon = 'rocket' | 'smiley' | 'game'
 export interface ButtonProps {
@@ -14,7 +12,6 @@ export interface ButtonProps {
     iconPosition?: 'left' | 'right';
     // tooltip?: string;
 }
-
 
 export const Icon = ({ name }: { name: Icon }) => {
     if (name === 'rocket') {
@@ -32,7 +29,7 @@ export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = f
 
     const variantClasses = {
         primary: 'text-white bg-blue-500 hover:bg-blue-700',
-        secondary: 'text-gray-500 bg-gray-400 hover:bg-gray-600',
+        secondary: 'text-gray-500 bg-gray-500 hover:bg-gray-800',
         tertiary: 'text-gray-800 bg-transparent hover:bg-gray-100',
     }
 

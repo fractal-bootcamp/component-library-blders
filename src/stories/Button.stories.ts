@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { FirstButton as Button, ButtonProps } from "../components/Button";
-import { ReactElement } from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -110,17 +109,5 @@ export const Disabled: Story = {
     text: "Disabled Button",
     disabled: true,
     loading: false,
-  },
-};
-
-export const WithLeftIcon: Story = {
-  args: {
-    variant: "primary",
-    size: "medium",
-    text: "With Left Icon",
-    disabled: false,
-    loading: false,
-    icon: "game",
-    iconPosition: "left",
   },
 };
