@@ -1,5 +1,6 @@
 import './index.css'
 import { FirstButton } from './components/Button'
+import ProgressBar from './components/ProgressBar'
 import { useState } from 'react'
 import { BiGame, BiRocket, BiSmile } from 'react-icons/bi'
 
@@ -31,7 +32,7 @@ function App() {
           icon={'rocket'}
           iconPosition='left'
           onClick={handleClick} />
-        <FirstButton textContent="OnlyTextAsProps" />
+        <ProgressBar percentage={80} color="green" />
       </div>
     </>
   )
