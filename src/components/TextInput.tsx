@@ -44,11 +44,9 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
         flex 
         flex-col 
         flex-grow 
-        rounded 
-        border 
+        rounded-lg 
         m-2 
-        ${validationState === "success" ? "border-green-500" : ""} 
-        ${validationState === "error" ? "border-red-500" : ""}
+
     `;
 
     // Padding notes:
@@ -61,10 +59,16 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
     const iconStyle = "h-6 w-6 mx-3 top-1/2 transform -translate-y-1/2";
 
     const inputPadding = `
-        rounded 
+        rounded-lg 
         p-3 
         ${prefixIcon ? "pl-12" : ""} 
         ${suffixIcon ? "pr-12" : ""}
+        border border-2
+        ${validationState === "success" ? "border-green-500" : ""} 
+        ${validationState === "error" ? "border-red-500" : ""}
+        ${!validationState ? "border-slate-500" : ""}
+
+
     `;
 
     if (!placeholderText) {
