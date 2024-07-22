@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { FirstButton as Button, ButtonProps } from "../components/Button";
+import { ReactElement } from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -22,6 +23,7 @@ const meta = {
     disabled: { control: "boolean" },
     loading: { control: "boolean" },
     text: { control: "text" },
+    icon: { control: "select", options: ["rocket", "smiley", "game"] },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -38,6 +40,8 @@ export const Primary: Story = {
     text: "Primary Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -48,6 +52,8 @@ export const Secondary: Story = {
     text: "Secondary Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -58,6 +64,8 @@ export const Tertiary: Story = {
     text: "Tertiary Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -68,6 +76,8 @@ export const Large: Story = {
     text: "Large Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -78,6 +88,8 @@ export const Small: Story = {
     text: "Small Button",
     disabled: false,
     loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };
 
@@ -98,5 +110,17 @@ export const Disabled: Story = {
     text: "Disabled Button",
     disabled: true,
     loading: false,
+  },
+};
+
+export const WithLeftIcon: Story = {
+  args: {
+    variant: "primary",
+    size: "medium",
+    text: "With Left Icon",
+    disabled: false,
+    loading: false,
+    icon: "game",
+    iconPosition: "left",
   },
 };

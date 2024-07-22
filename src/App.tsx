@@ -1,7 +1,7 @@
 import './index.css'
 import { FirstButton } from './components/Button'
 import { useState } from 'react'
-import { BiGame } from "react-icons/bi";
+import { BiGame, BiRocket, BiSmile } from 'react-icons/bi'
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
           disabled={isDisabled}
           loading={isLoading}
           text={'Click me'}
-          icon={<BiGame />}
+          icon={'rocket'}
           iconPosition='left'
           onClick={handleClick} />
       </div>

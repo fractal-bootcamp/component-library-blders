@@ -1,3 +1,8 @@
+import { ReactElement } from "react";
+import { BiGame, BiRocket, BiSmile } from "react-icons/bi";
+
+
+type Icon = 'rocket' | 'smiley' | 'game'
 export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'tertiary';
     size?: 'small' | 'medium' | 'large';
@@ -5,9 +10,20 @@ export interface ButtonProps {
     loading?: boolean;
     onClick: () => void;
     text: string;
-    icon?: React.ReactNode;
+    icon?: Icon;
     iconPosition?: 'left' | 'right';
     // tooltip?: string;
+}
+
+
+export const Icon = ({ name }: { name: Icon }) => {
+    if (name === 'rocket') {
+        return <BiRocket />
+    } else if (name === 'smiley') {
+        return <BiSmile />
+    } else if (name === 'game') {
+        return <BiGame />
+    }
 }
 
 export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = false, loading = false, onClick, text, icon, iconPosition = 'left' }: ButtonProps) => {
@@ -17,7 +33,7 @@ export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = f
     const variantClasses = {
         primary: 'text-white bg-blue-500 hover:bg-blue-700',
         secondary: 'text-gray-500 bg-gray-400 hover:bg-gray-600',
-        tertiary: 'text-black bg-transparent hover:bg-gray-100',
+        tertiary: 'text-gray-800 bg-transparent hover:bg-gray-100',
     }
 
     const sizeClasses = {
@@ -46,9 +62,9 @@ export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = f
                 onClick={onClick}
             >{loading ? 'Loading...' : (
                 <>
-                    {icon && iconPosition === 'left' && <span className={iconClasses}>{icon}</span>}
+                    {icon && iconPosition === 'left' && <span className={iconClasses}><Icon name={icon} /></span>}
                     {text}
-                    {icon && iconPosition === 'right' && <span className={iconClasses}>{icon}</span>}
+                    {icon && iconPosition === 'right' && <span className={iconClasses}><Icon name={icon} /></span>}
                 </>
             )}
             </button>
