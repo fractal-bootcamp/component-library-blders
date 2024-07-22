@@ -22,6 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const Text: Story = {
   args: {
     children: "Child Text",
+    content: "Tooltip Text",
     position: "top"
   }
 };
