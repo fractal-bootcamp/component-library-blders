@@ -59,14 +59,14 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
                 <div className="flex flex-col">
                     {prefixIcon && <img src={prefixIcon} alt="prefix icon" className={iconImg} />}
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-grow ">
                     <input
                         type={isPassword ? "password" : "text"}
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                         placeholder={placeholderText}
                         disabled={isDisabled}
-                        className="flex-grow p-3 rounded"
+                        className="p-3 rounded"
                     />
                 </div>
                 <div className="flex flex-col">
