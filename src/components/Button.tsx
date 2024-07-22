@@ -1,4 +1,5 @@
 import { BiGame, BiRocket, BiSmile } from "react-icons/bi";
+import Tooltip from "./Tooltip";
 
 type Icon = 'rocket' | 'smiley' | 'game'
 export interface ButtonProps {
@@ -6,10 +7,12 @@ export interface ButtonProps {
     size?: 'small' | 'medium' | 'large';
     disabled?: boolean;
     loading?: boolean;
-    onClick: () => void;
-    text: string;
+    onClick?: () => void;
+    textContent: string;
     icon?: Icon;
     iconPosition?: 'left' | 'right';
+    tooltip?: string;
+    tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
     // tooltip?: string;
 }
 
@@ -23,7 +26,7 @@ export const Icon = ({ name }: { name: Icon }) => {
     }
 }
 
-export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = false, loading = false, onClick, text, icon, iconPosition = 'left' }: ButtonProps) => {
+export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = 'primary', size = 'medium', disabled = false, loading = false, onClick, textContent, icon, iconPosition = 'left' }: ButtonProps) => {
 
     const baseClasses = 'flex justify-center items-center px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none transition-scale duration-150 ease-in-out transform hover:scale-[102%] active:scale-[97%]'
 
@@ -52,7 +55,7 @@ export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = f
     const iconClasses = iconPosition === 'left' ? 'mr-2' : 'ml-2';
 
     return (
-        <div>
+        <Tooltip tipContent={tooltip} position={tooltipPosition}>
             <button
                 className={classes}
                 disabled={disabled || loading}
@@ -60,12 +63,12 @@ export const FirstButton = ({ variant = 'primary', size = 'medium', disabled = f
             >{loading ? 'Loading...' : (
                 <>
                     {icon && iconPosition === 'left' && <span className={iconClasses}><Icon name={icon} /></span>}
-                    {text}
+                    {textContent}
                     {icon && iconPosition === 'right' && <span className={iconClasses}><Icon name={icon} /></span>}
                 </>
             )}
             </button>
-        </div>
+        </Tooltip>
     )
 }
 

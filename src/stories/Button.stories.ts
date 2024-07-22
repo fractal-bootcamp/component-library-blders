@@ -21,8 +21,13 @@ const meta = {
     size: { control: "select", options: ["small", "medium", "large"] },
     disabled: { control: "boolean" },
     loading: { control: "boolean" },
-    text: { control: "text" },
-    icon: { control: "select", options: ["rocket", "smile", "game"] },
+    textContent: { control: "text" },
+    icon: { control: "select", options: ["rocket", "smiley", "game"] },
+    tooltip: { control: "text" },
+    tooltipPosition: {
+      control: "select",
+      options: ["top", "bottom", "left", "right"],
+    },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -36,7 +41,7 @@ export const Primary: Story = {
   args: {
     variant: "primary",
     size: "medium",
-    text: "Primary Button",
+    textContent: "Primary Button",
     disabled: false,
     loading: false,
     icon: "game",
@@ -48,7 +53,7 @@ export const Secondary: Story = {
   args: {
     variant: "secondary",
     size: "medium",
-    text: "Secondary Button",
+    textContent: "Secondary Button",
     disabled: false,
     loading: false,
     icon: "game",
@@ -60,7 +65,7 @@ export const Tertiary: Story = {
   args: {
     variant: "tertiary",
     size: "medium",
-    text: "Tertiary Button",
+    textContent: "Tertiary Button",
     disabled: false,
     loading: false,
     icon: "game",
@@ -72,7 +77,7 @@ export const Large: Story = {
   args: {
     variant: "primary",
     size: "large",
-    text: "Large Button",
+    textContent: "Large Button",
     disabled: false,
     loading: false,
     icon: "game",
@@ -84,7 +89,7 @@ export const Small: Story = {
   args: {
     variant: "primary",
     size: "small",
-    text: "Small Button",
+    textContent: "Small Button",
     disabled: false,
     loading: false,
     icon: "game",
@@ -96,7 +101,7 @@ export const Loading: Story = {
   args: {
     variant: "primary",
     size: "medium",
-    text: "Loading Button",
+    textContent: "Loading Button",
     disabled: false,
     loading: true,
   },
@@ -106,7 +111,7 @@ export const Disabled: Story = {
   args: {
     variant: "primary",
     size: "medium",
-    text: "Disabled Button",
+    textContent: "Disabled Button",
     disabled: true,
     loading: false,
   },

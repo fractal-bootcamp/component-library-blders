@@ -21,19 +21,17 @@ function App() {
 
   return (
     <>
-      <div className='bg-red-100'>
-        <div className="text-3xl text-red font-bold underline">
-          Hello world!
-        </div>
+      <div className='bg-red-100 flex flex-col items-center gap-4 m-5 p-5 rounded-md'>
         <FirstButton
           variant='primary'
           size='medium'
           disabled={isDisabled}
           loading={isLoading}
-          text={'Click me'}
+          textContent={'Click me'}
           icon={'rocket'}
           iconPosition='left'
           onClick={handleClick} />
+        <FirstButton textContent="OnlyTextAsProps" />
       </div>
     </>
   )
