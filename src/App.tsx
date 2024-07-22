@@ -8,6 +8,8 @@ function App() {
   const [dummyInputText, setDummyInputText] = useState<string>("")
   const headerStyle = "text-4xl text-blue-500 font-bold underline";
   const subheadStyle = "text-xl text-purple-700 font-bold";
+  const sampleIcon = "icon.png"
+
 
   return (
     <>
@@ -45,7 +47,12 @@ function App() {
         <div>
           <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='State = Success :)' validationState="success" />
         </div>
-
+        <div>
+          <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='prefixIcon' prefixIcon={sampleIcon} />
+        </div>
+        <div>
+          <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='suffixIcon' suffixIcon={sampleIcon} />
+        </div>
       </div>
 
 

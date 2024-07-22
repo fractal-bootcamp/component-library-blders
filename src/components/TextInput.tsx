@@ -47,7 +47,7 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
     return (
         <>
             <div>
-                {prefixIcon && <span className="absolute left-0 inset-y-0 flex items-center pl-2">
+                {prefixIcon && <span className="">
                     <img src={prefixIcon} alt="prefix icon" className="h-4 w-4" />
                 </span>}
                 <input
@@ -58,10 +58,10 @@ export const TextInput = ({ value, onChange, placeholderText, isPassword, isDisa
                     disabled={isDisabled}
                     className={validationState === "error" ? errorStyle : validationState === "success" ? successStyle : regStyle}
                 />
+                {suffixIcon && <span className="">
+                    <img src={suffixIcon} alt="suffix icon" className="h-4 w-4" />
+                </span>}
             </div>
-            {suffixIcon && <span className="absolute right-0 inset-y-0 flex items-center pr-2">
-                <img src={suffixIcon} alt="suffix icon" className="h-4 w-4" />
-            </span>}
         </>
     );
 }
