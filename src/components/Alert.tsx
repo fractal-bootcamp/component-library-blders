@@ -22,6 +22,22 @@ const bgColors: Record<Urgency, string> = {
     error: "bg-red-200"
 }
 
+// I want a queue of alert messages
+// it should show a message that has been added to the queue
+// it will either go away after a set duration or be dismissed manually
+// multiple message may arrive and be shown at the same time
+// there may be some ordering that occurs
+// They will not affect each other
+
+// array of alert objects
+// to add an alert, you can have an "Alert Provider", which is global
+// const [alertQueue, setAlertQueue] = useState([])
+// const dispatchAlert = (alert) => setAlertQueue([...alertQueue, alert])
+// const removeAlert = (alert) => ...
+// <Alert onRemove={() => removeAlert()} ...
+
+
+
 
 /**
  * A toast for transient messages.
@@ -33,7 +49,7 @@ const bgColors: Record<Urgency, string> = {
 - Slide-in from the top or bottom on show
 - Slide-out on dismiss
  */
-export const Alert = ({
+export const AlertQueue = ({
     message,
     urgency = "info",
     multiMessage = "stack",
@@ -66,10 +82,14 @@ export const Alert = ({
 
     const bgColor = bgColors[urgency] || "bg-gray-200";
 
+    const offscreenPosition = fromTop ? { y: -100, opacity: 0 } : { y: 100, opacity: 0 }
+
+    const position = fromTop ? "top-4" : "bottom-4"
+
 
     const alertClass = `
         fixed 
-        bottom-4 
+        ${position}
         left-1/2 
         transform 
         -translate-x-1/2 
@@ -85,9 +105,9 @@ export const Alert = ({
         <AnimatePresence>
             {isVisible &&
                 (<motion.div
-                    initial={{ y: 100, opacity: 0 }}
+                    initial={offscreenPosition}
                     animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 100, opacity: 0 }}
+                    exit={offscreenPosition}
                     transition={{ duration: 0.5 }}
                     className={alertClass}
                 >

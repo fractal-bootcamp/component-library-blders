@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextInput } from "./components/TextInput";
-import { Alert } from "./components/Alert";
+import { AlertQueue } from "./components/Alert";
 
 export const LuiExamples = () => {
 
@@ -50,7 +50,7 @@ export const LuiExamples = () => {
                 <div>
                     <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='suffixIcon' suffixIcon={sampleIcon} />
                 </div>
-                <Alert message="hello" urgency="success" />
+                <AlertQueue message="hello" urgency="success" />
                 <div className={subheadStyle}>
                     Button to trigger Alert:
                 </div>
@@ -62,7 +62,7 @@ export const LuiExamples = () => {
                         Show Alert
                     </button>
                 </div>
-                {showAlert && <Alert message="hello" urgency="success" duration={2000} />}
+                {showAlert && <AlertQueue message="hello" urgency="success" duration={2000} fromTop={true} />}
 
             </div>
         </>
