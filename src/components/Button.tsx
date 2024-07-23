@@ -6,8 +6,8 @@ type Icon = 'rocket' | 'smiley' | 'game'
 export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'tertiary';
     size?: 'small' | 'medium' | 'large';
-    disabled?: boolean;
-    loading?: boolean;
+    // disabled?: boolean;
+    // loading?: boolean;
     onClick?: () => void;
     textContent: string;
     icon?: Icon;
@@ -27,7 +27,7 @@ export const Icon = ({ name }: { name: Icon }) => {
     }
 }
 
-export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = 'primary', size = 'medium', disabled = false, loading = false, onClick, textContent, icon, iconPosition = 'left' }: ButtonProps) => {
+export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = 'primary', size = 'medium', onClick, textContent, icon, iconPosition = 'left' }: ButtonProps) => {
     const [isDisabled, setIsDisabled] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +41,6 @@ export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = '
         }
             , 2000);
     }
-
 
     const baseClasses = 'flex justify-center items-center px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none transition-scale duration-150 ease-in-out transform hover:scale-[102%] active:scale-[97%]'
 
@@ -75,7 +74,7 @@ export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = '
                 className={buttonClasses}
                 disabled={isDisabled || isLoading}
                 onClick={handleClick}
-            >{loading ? 'Loading...' : (
+            >{isLoading ? 'Loading...' : (
                 <>
                     {icon && iconPosition === 'left' && <span className={iconClasses}><Icon name={icon} /></span>}
                     {textContent}

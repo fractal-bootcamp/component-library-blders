@@ -19,10 +19,11 @@ const meta = {
       options: ["primary", "secondary", "tertiary"],
     },
     size: { control: "select", options: ["small", "medium", "large"] },
-    disabled: { control: "boolean" },
-    loading: { control: "boolean" },
+    // disabled: { control: "boolean" },
+    // loading: { control: "boolean" },
     textContent: { control: "text" },
     icon: { control: "select", options: ["rocket", "smile", "game"] },
+    onClick: { action: "clicked" },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -37,8 +38,8 @@ export const Primary: Story = {
     variant: "primary",
     size: "medium",
     textContent: "Primary Button",
-    disabled: false,
-    loading: false,
+    // disabled: false,
+    // loading: false,
     icon: "game",
     iconPosition: "left",
   },
@@ -49,8 +50,8 @@ export const Secondary: Story = {
     variant: "secondary",
     size: "medium",
     textContent: "Secondary Button",
-    disabled: false,
-    loading: false,
+    // disabled: false,
+    // loading: false,
     icon: "game",
     iconPosition: "left",
   },
@@ -61,8 +62,8 @@ export const Tertiary: Story = {
     variant: "tertiary",
     size: "medium",
     textContent: "Tertiary Button",
-    disabled: false,
-    loading: false,
+    // disabled: false,
+    // loading: false,
     icon: "game",
     iconPosition: "left",
   },
@@ -73,8 +74,8 @@ export const Large: Story = {
     variant: "primary",
     size: "large",
     textContent: "Large Button",
-    disabled: false,
-    loading: false,
+    // disabled: false,
+    // loading: false,
     icon: "game",
     iconPosition: "left",
   },
@@ -85,29 +86,39 @@ export const Small: Story = {
     variant: "primary",
     size: "small",
     textContent: "Small Button",
-    disabled: false,
-    loading: false,
+    // disabled: false,
+    // loading: false,
     icon: "game",
     iconPosition: "left",
   },
 };
 
-export const Loading: Story = {
-  args: {
-    variant: "primary",
-    size: "medium",
-    textContent: "Loading Button",
-    disabled: false,
-    loading: true,
-  },
-};
+// export const ToggleState: Story = {
+//   args: {
+//     variant: "primary",
+//     size: "medium",
+//     textContent: "Toggle State Button",
+//     icon: "game",
+//     iconPosition: "left",
+//   },
+// };
 
-export const Disabled: Story = {
-  args: {
-    variant: "primary",
-    size: "medium",
-    textContent: "Disabled Button",
-    disabled: true,
-    loading: false,
-  },
-};
+// export const Loading: Story = {
+//   args: {
+//     variant: "primary",
+//     size: "medium",
+//     textContent: "Loading Button",
+//     // disabled: false,
+//     loading: true,
+//   },
+// };
+
+// export const Disabled: Story = {
+//   args: {
+//     variant: "primary",
+//     size: "medium",
+//     textContent: "Disabled Button",
+//     disabled: true,
+//     loading: false,
+//   },
+// };

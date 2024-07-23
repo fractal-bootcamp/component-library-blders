@@ -4,21 +4,7 @@ import { useState } from 'react'
 import { BiGame, BiRocket, BiSmile } from 'react-icons/bi'
 
 
-
 function App() {
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  function handleClick() {
-    setIsLoading(true);
-    setIsDisabled(true);
-    console.log('clicked');
-    setTimeout(() => {
-      setIsDisabled(false);
-      setIsLoading(false);
-    }
-      , 2000);
-  }
 
   return (
     <>
