@@ -42,7 +42,7 @@ export const LuiExamples = () => {
                 <div>
                     <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='suffixIcon' suffixIcon={sampleIcon} />
                 </div>
-                <Alert message="hello" />
+                <Alert message="hello" urgency="success" />
             </div>
         </>
     )

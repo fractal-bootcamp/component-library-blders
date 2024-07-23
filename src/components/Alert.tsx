@@ -14,10 +14,10 @@ type AlertInputProps = {
 
 
 const bgColors: Record<Urgency, string> = {
-    info: "bg-blue-300",
-    success: "bg-green-300",
-    warning: "bg-yellow-300",
-    error: "bg-red-300"
+    info: "bg-blue-200",
+    success: "bg-green-200",
+    warning: "bg-yellow-200",
+    error: "bg-red-200"
 }
 
 
@@ -42,20 +42,17 @@ export const Alert = ({
     const ActiveIcon = (() => {
         switch (urgency) {
             case "success":
+                return <TextIcon type={urgency} color="green" />;
             case "warning":
             case "error":
-                return <TextIcon type={urgency} />;
+                return <TextIcon type={urgency} color="red" />;
             default:
                 return null;
         }
     })();
 
 
-    const bgColor = bgColors[urgency] || "bg-gray-300";
-
-
-
-
+    const bgColor = bgColors[urgency] || "bg-gray-200";
 
 
     const alertClass = `
@@ -64,9 +61,8 @@ export const Alert = ({
         left-1/2 
         transform 
         -translate-x-1/2 
-        bg-white 
-        text-black 
-        p-4 
+        py-3 
+        pr-3
         rounded-lg 
         shadow-lg
         ${bgColor}
@@ -76,8 +72,10 @@ export const Alert = ({
     return (
         <>
             <div className={alertClass}>
-                {ActiveIcon ?? ActiveIcon}
-                {message}
+                <div className="flex flex-row">
+                    {ActiveIcon ?? ActiveIcon}
+                    {message}
+                </div>
             </div>
         </>
     );
