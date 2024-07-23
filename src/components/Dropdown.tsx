@@ -74,13 +74,19 @@ const Dropdown = ({
             setSearchTerm={setSearchTerm}
             setExpanded={setExpanded}
           />
-          {filteredOptions.map(option => (
-            <DropdownItem
-              value={option}
-              handleSelect={handleSelect}
-              selected={selected.includes(option)}
-            />
-          ))}
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map(option => (
+              <DropdownItem
+                value={option}
+                handleSelect={handleSelect}
+                selected={selected.includes(option)}
+              />
+            ))
+          ) : (
+            <div className="text-center px-4 py-2  text-gray-400 ">
+              No matches
+            </div>
+          )}
         </div>
       </div>
     </div>
