@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { TextIcon } from "./TextIcon";
+import { AnimatePresence, motion } from "framer-motion";
 
 
 type Urgency = "info" | "success" | "warning" | "error"
@@ -39,6 +41,16 @@ export const Alert = ({
     duration = 3000
 }: AlertInputProps) => {
 
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(false);
+        }, duration);
+
+        return () => clearTimeout(timer);
+    }, [duration]);
+
     const ActiveIcon = (() => {
         switch (urgency) {
             case "success":
@@ -70,13 +82,22 @@ export const Alert = ({
 
 
     return (
-        <>
-            <div className={alertClass}>
-                <div className="flex flex-row">
-                    {ActiveIcon ?? ActiveIcon}
-                    {message}
-                </div>
-            </div>
-        </>
+        <AnimatePresence>
+            {isVisible &&
+                (<motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 100, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className={alertClass}
+                >
+                    <div className="flex flex-row">
+                        {ActiveIcon ?? ActiveIcon}
+                        {message}
+                    </div>
+
+                </motion.div>)
+            }
+        </AnimatePresence>
     );
 }
