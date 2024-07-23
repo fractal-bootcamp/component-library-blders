@@ -33,13 +33,15 @@ const Dropdown = ({
   };
   const maxOptionLength = 14;
   return (
-    <div className="text-xs cursor-pointer relative ">
+    <div
+      className="text-xs cursor-pointer relative "
+      tabIndex={0}
+      onBlur={() => setExpanded(false)}
+    >
       {/* Dropdown header/unexpanded display */}
       <div
         className={`${selected.length === 0 ? "text-gray-400" : "text-black"} flex justify-between items-center w-[150px] px-4 py-2 border border-slate-500 rounded-lg`}
-        tabIndex={0}
         onClick={() => setExpanded(!expanded)}
-        onBlur={() => setExpanded(false)}
       >
         <div className="text-nowrap overflow-hidden ">
           {selected.length === 0
