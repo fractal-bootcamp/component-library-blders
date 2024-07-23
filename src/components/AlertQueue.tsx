@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { TextIcon } from "./TextIcon";
 import { AnimatePresence, motion } from "framer-motion";
 
-
 type Urgency = "info" | "success" | "warning" | "error"
-
 
 export type AlertMessage = {
     message: string;
@@ -32,21 +30,37 @@ const bgColors: Record<Urgency, string> = {
     error: "bg-red-200"
 }
 
-// I want a queue of alert messages
-// it should show a message that has been added to the queue
-// it will either go away after a set duration or be dismissed manually
-// multiple message may arrive and be shown at the same time
-// there may be some ordering that occurs
-// They will not affect each other
 
-// array of alert objects
-// to add an alert, you can have an "Alert Provider", which is global
-// const [alertQueue, setAlertQueue] = useState([])
-// const dispatchAlert = (alert) => setAlertQueue([...alertQueue, alert])
-// const removeAlert = (alert) => ...
-// <Alert onRemove={() => removeAlert()} ...
+/**
+ * Queue of alerts (toast messages).
+ * 
+ * Alerts default to "info" level of urgency. Other options: "success", "warning", "error"
+ * 
+ * Alerts disappear after 3 seconds by default, or can be dismissed. They stack by default.
+ */
+export const AlertQueue = ({
+    alerts,
+    stacking = true,
+    fromTop = false,
+    duration = 3000
+}: AlertQueueProps) => {
 
 
+    return (
+        <>
+            {alerts.map((alert) => (
+                <Alert
+                    key={alert.message + Date.now()}
+                    message={alert.message}
+                    urgency={alert.urgency || "info"}
+                    fromTop={fromTop}
+                    duration={duration}
+                />
+            ))
+            }
+        </>
+    );
+}
 
 const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000 }: SingleAlertProps) => {
 
@@ -93,8 +107,6 @@ const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000 }: 
         ${bgColor}
     `;
 
-    console.log(`SHOWING ALERT: ${message}, URGENCY: ${urgency}`)
-
 
     return (
         <AnimatePresence>
@@ -117,45 +129,36 @@ const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000 }: 
     );
 }
 
-/**
- * A toast for transient messages.
-
-- Different type defaults (success, error, warning, info)
-- Auto-dismiss with customizable duration
-- Manual dismiss button
-- Display options for multiple notifications (all at once, queue, etc)
-- Slide-in from the top or bottom on show
-- Slide-out on dismiss
- */
-export const AlertQueue = ({
-    alerts,
-    fromTop = false,
-    duration = 3000
-}: AlertQueueProps) => {
-
-    // const [isVisible, setIsVisible] = useState(true);
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setIsVisible(false);
-    //     }, duration);
-
-    //     return () => clearTimeout(timer);
-    // }, [duration]);
 
 
-    return (
-        <>
-            {alerts.map((alert) => (
-                <Alert
-                    key={alert.message + Date.now()}
-                    message={alert.message}
-                    urgency={alert.urgency || "info"}
-                    fromTop={fromTop}
-                    duration={duration}
-                />
-            ))
-            }
-        </>
-    );
-}
+// I want a queue of alert messages
+// it should show a message that has been added to the queue
+// it will either go away after a set duration or be dismissed manually
+// multiple message may arrive and be shown at the same time
+// there may be some ordering that occurs
+// They will not affect each other
+
+// array of alert objects
+// to add an alert, you can have an "Alert Provider", which is global
+// const [alertQueue, setAlertQueue] = useState([])
+// const dispatchAlert = (alert) => setAlertQueue([...alertQueue, alert])
+// const removeAlert = (alert) => ...
+// <Alert onRemove={() => removeAlert()} ...
+
+
+
+
+
+
+
+// PROB DELETABLE
+
+// const [isVisible, setIsVisible] = useState(true);
+
+// useEffect(() => {
+//     const timer = setTimeout(() => {
+//         setIsVisible(false);
+//     }, duration);
+
+//     return () => clearTimeout(timer);
+// }, [duration]);
