@@ -1,4 +1,6 @@
+import { useState } from "react";
 import DropdownItem from "./DropdownItem";
+import { ChevronDown, ChevronUp } from "lucide-react";
 interface DropdownProps {
   options: string[];
   multiple: boolean;
@@ -13,6 +15,7 @@ const Dropdown = ({
 }: DropdownProps) => {
   //TODO: implement search functionality
   // const [searchTerm, setSearchTerm] = useState("");
+  const [expanded, setExpanded] = useState(false);
 
   const handleSelect = (value: string) => {
     //if multi-select, add/remove from selection array accordingly
@@ -25,18 +28,42 @@ const Dropdown = ({
     }
     //if single-select, set selection to the value
     else {
-      setSelected([value]);
+      setSelected(selected[0] === value ? [] : [value]);
     }
   };
   return (
-    <div className=" flex flex-col justify-between items-start">
-      {options.map(option => (
-        <DropdownItem
-          value={option}
-          handleSelect={handleSelect}
-          selected={selected.includes(option)}
-        />
-      ))}
+    <div className="text-xs cursor-pointer relative ">
+      {/* Dropdown header/unexpanded display */}
+      <div
+        className={`${selected.length === 0 ? "text-gray-400" : "text-black"} flex justify-between w-[150px] px-4 py-2 border border-slate-500 rounded-lg`}
+        onClick={() => setExpanded(!expanded)}
+        onBlur={() => setExpanded(false)}
+      >
+        {selected.length === 0
+          ? "Select..."
+          : selected.length === 1
+            ? selected[0]
+            : `${selected.length} selected`}
+        {expanded ? (
+          <ChevronUp className="text-black ml-2 h-4 w-4" />
+        ) : (
+          <ChevronDown className="text-black ml-2 h-4 w-4" />
+        )}
+      </div>
+      {/* Dropdown list */}
+      <div
+        className={`${expanded ? " max-h-[150px] opacity-100" : " max-h-[0px] opacity-0"} absolute right-0  w-fit min-w-[100px] border overflow-y-auto border-slate-200 transition-all duration-500`}
+      >
+        <div className=" flex flex-col justify-between items-start">
+          {options.map(option => (
+            <DropdownItem
+              value={option}
+              handleSelect={handleSelect}
+              selected={selected.includes(option)}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

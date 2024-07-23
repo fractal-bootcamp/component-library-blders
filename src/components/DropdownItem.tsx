@@ -5,13 +5,13 @@ interface DropdownItemProps {
 }
 const DropdownItem = ({ value, handleSelect, selected }: DropdownItemProps) => {
   const classes = {
-    selected: "bg-teal-500 text-white",
-    unselected: "bg-white text-gray-900"
+    selected: "bg-teal-500 hover:bg-teal-600 text-white",
+    unselected: "bg-slate-50 text-gray-900 hover:bg-slate-200"
   };
 
   return (
     <div
-      className={`${classes[selected ? "selected" : "unselected"]}px-4 py-2 cursor-pointer`}
+      className={`${classes[selected ? "selected" : "unselected"]} transform transition-all duration-200 px-4 py-2 w-full cursor-pointer`}
       onClick={() => handleSelect(value)}
     >
       {value}

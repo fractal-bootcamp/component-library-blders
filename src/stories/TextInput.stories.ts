@@ -2,36 +2,36 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TextInput } from "../components/TextInput";
 
 const meta = {
-  title: "Example/TextInput",
+  title: "Library/TextInput",
   component: TextInput,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     backgrounds: {
-      default: "dark",
+      default: "dark"
     },
     layout: "fullscreen",
-    controls: { sort: "requiredFirst" },
+    controls: { sort: "requiredFirst" }
   },
   argTypes: {
     value: {
       control: "text",
-      description: "The current value of the input field.",
+      description: "The current value of the input field."
     },
     onChange: {
       action: "changed",
-      description: "The function to handle changes in the input field.",
+      description: "The function to handle changes in the input field."
     },
     placeholderText: {
       control: "text",
-      description: "The text to display as a placeholder in the input field.",
+      description: "The text to display as a placeholder in the input field."
     },
     isPassword: {
       control: "boolean",
-      description: "Indicates if the input field should be of type password.",
+      description: "Indicates if the input field should be of type password."
     },
     isDisabled: {
       control: "boolean",
-      description: "Indicates if the input field should be disabled.",
+      description: "Indicates if the input field should be disabled."
     },
     prefixIcon: {
       control: "select",
@@ -45,9 +45,9 @@ const meta = {
         "reddit",
         "error",
         "check",
-        null,
+        null
       ],
-      description: "The icon to display as a prefix in the input field.",
+      description: "The icon to display as a prefix in the input field."
     },
     suffixIcon: {
       control: "select",
@@ -61,16 +61,16 @@ const meta = {
         "reddit",
         "error",
         "check",
-        null,
+        null
       ],
-      description: "The icon to display as a suffix in the input field.",
+      description: "The icon to display as a suffix in the input field."
     },
     validationState: {
       control: "select",
       options: ["error", "success", null],
-      description: "The validation state of the input field.",
-    },
-  },
+      description: "The validation state of the input field."
+    }
+  }
 } satisfies Meta<typeof TextInput>;
 
 export default meta;
@@ -79,51 +79,51 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     value: "",
-    onChange: () => {},
-  },
+    onChange: () => {}
+  }
 };
 
 export const DisabledState: Story = {
   args: {
     ...Default.args,
     value: "Disabled state",
-    isDisabled: true,
-  },
+    isDisabled: true
+  }
 };
 
 export const PasswordInput: Story = {
   args: {
     ...Default.args,
-    isPassword: true,
-  },
+    isPassword: true
+  }
 };
 
 export const ErrorState: Story = {
   args: {
     ...Default.args,
     value: "Bad text",
-    validationState: "error",
-  },
+    validationState: "error"
+  }
 };
 
 export const SuccessState: Story = {
   args: {
     ...Default.args,
     value: "Good text",
-    validationState: "success",
-  },
+    validationState: "success"
+  }
 };
 
 export const WithPrefixIcon: Story = {
   args: {
     ...Default.args,
-    prefixIcon: "card",
-  },
+    prefixIcon: "card"
+  }
 };
 
 export const WithSuffixIcon: Story = {
   args: {
     ...Default.args,
-    suffixIcon: "cheese",
-  },
+    suffixIcon: "cheese"
+  }
 };
