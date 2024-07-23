@@ -1,14 +1,14 @@
-
+import motion from 'framer-motion'
 interface ProgressBarProps {
     shape: 'linear' | 'circular'; // Shape of the progress bar, either linear or circular
     value: number; // Current value of the progress
     max: number; // Maximum value of the progress
-    // striped?: boolean; // Optional: If the progress bar should be striped
-    // animated?: boolean; // Optional: If the progress bar should be animated
+    striped?: boolean; // Optional: If the progress bar should be striped
+    animated?: boolean; // Optional: If the progress bar should be animated
 }
 
 // Define the ProgressBar component
-export const ProgressBar = ({ shape, value, max }: ProgressBarProps) => {
+export const ProgressBar = ({ shape, value, max, striped = false, animated = false }: ProgressBarProps) => {
     // Base class for the linear progress bar container
     const baseClass = 'h-6 w-full bg-gray-200 rounded-md border border-gray-400';
 
@@ -20,9 +20,18 @@ export const ProgressBar = ({ shape, value, max }: ProgressBarProps) => {
         fourth: '#22C55E', // green-500
     };
 
-    // derive the percentage of the progress
-    const percentage = Math.round((value / max) * 100);
-
+    //generates CSS repeating linear gradient for striped pattern. 
+    const getStripeColor = () => {
+        return `repeating-linear-gradient(
+            45deg,
+            rgba(255, 105, 180, 0.15), /* Hot Pink */
+            rgba(255, 105, 180, 0.15) 10px,
+            rgba(0, 255, 255, 0.15) 10px,
+            rgba(0, 255, 255, 0.15) 20px
+        )`;
+    };
+    // derive the percentage of the progress, set the max to 100
+    const percentage = Math.min(Math.round((value / max) * 100), 100);
     // Function to determine the color of the progress bar based on the percentage
     const getProgressBarColor = () => {
         if (percentage < 25) return progressColors.first; // Less than 25% progress
@@ -73,8 +82,8 @@ export const ProgressBar = ({ shape, value, max }: ProgressBarProps) => {
         <>
             {shape === 'circular' && <CircularProgressBar />} {/* Render circular progress bar if shape is circular */}
             {shape === 'linear' &&
-                <div className={baseClass}> {/* Render linear progress bar if shape is linear */}
-                    <div style={{ width: `${percentage}%`, backgroundColor: getProgressBarColor() }}
+                <div className={baseClass}> {/* Render linear progress bar if shape is set to linear */}
+                    <div style={{ width: `${percentage}%`, backgroundColor: getProgressBarColor(), backgroundImage: striped ? getStripeColor() : 'none' }} //none removes the background image if striped is
                         className={"h-full rounded-md transition-all duration-399 ease-in-out"}>
                     </div>
                     <div className="text-black text-sm font-bold px-3 p-1">

@@ -1,6 +1,7 @@
 import './index.css'
 import { FirstButton } from './components/Button'
 import { LuiExamples } from './LuiExamples'
+import DorothyExample from './examples/DorothyExample'
 
 function App() {
 
@@ -15,8 +16,7 @@ function App() {
       <div>
         <LuiExamples />
       </div>
-
-
+      <DorothyExample />
     </>
   )
 }

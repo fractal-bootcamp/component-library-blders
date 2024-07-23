@@ -1,0 +1,24 @@
+// relevant commits - 
+- START = 48ab50169c32359b88645f14bfe32274b0955595
+- END = 19ce8e95f553169f003f5ab676acd09ab7be4516
+
+commit 19ce8e95f553169f003f5ab676acd09ab7be4516 (HEAD -> dorothy/progressbar-functionality)
+Author: dxren <dorothy.x.ren@gmail.com>
+Date:   Tue Jul 23 16:06:21 2024 -0400
+commit 19ce8e95f553169f003f5ab676acd09ab7be4516 (HEAD -> dorothy/progressbar-functionality)
+Author: dxren <dorothy.x.ren@gmail.com>
+Date:   Tue Jul 23 16:06:21 2024 -0400
+
+    created circular progress bar using svg
+
+commit d0b0bf12ad6578e985f212b047c83027e9c6f39b (origin/dorothy/progressbar-functionality)
+Author: dxren <dorothy.x.ren@gmail.com>
+Date:   Tue Jul 23 14:05:36 2024 -0400
+
+    added linear/circular with daisy, will go back and do svg version. and color customization based on progress
+
+commit 48ab50169c32359b88645f14bfe32274b0955595
+Author: dxren <dorothy.x.ren@gmail.com>
+Date:   Mon Jul 22 18:56:03 2024 -0400
+
+    beginning to work on progress bar functionality
