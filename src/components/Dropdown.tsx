@@ -36,7 +36,7 @@ const Dropdown = ({
       setSelected(selected[0] === value ? [] : [value]);
     }
   };
-  const maxOptionLength = 14;
+  const maxOptionLength = 15;
   return (
     <div
       className="text-xs cursor-pointer relative "
@@ -45,7 +45,7 @@ const Dropdown = ({
     >
       {/* Dropdown header/unexpanded display */}
       <div
-        className={`${selected.length === 0 ? "text-gray-400" : "text-black"} flex justify-between items-center w-[150px] px-4 py-2 border border-slate-500 rounded-lg`}
+        className={`${selected.length === 0 ? "text-gray-400" : "text-black"} flex justify-between items-center w-[150px] pl-4 pr-2 py-2 border border-slate-500 rounded-lg`}
         onClick={() => setExpanded(!expanded)}
       >
         <div className="text-nowrap overflow-hidden ">
