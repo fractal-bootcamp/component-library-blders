@@ -1,7 +1,9 @@
 import './index.css'
 import { FirstButton } from './components/Button'
+import { LuiExamples } from './LuiExamples'
 
 function App() {
+
   return (
     <>
       <div className='bg-red-100'>
@@ -10,6 +12,11 @@ function App() {
         </div>
         <FirstButton />
       </div>
+      <div>
+        <LuiExamples />
+      </div>
+
+
     </>
   )
 }
