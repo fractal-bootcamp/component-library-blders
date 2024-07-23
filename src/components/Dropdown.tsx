@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DropdownItem from "./DropdownItem";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import DropdownSearch from "./DropdownSearch";
 interface DropdownProps {
   options: string[];
   multiple: boolean;
@@ -13,10 +14,14 @@ const Dropdown = ({
   selected, //array of current selection passed in from parent state
   setSelected //selected setter function to update parent state
 }: DropdownProps) => {
-  //TODO: implement search functionality
-  // const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [expanded, setExpanded] = useState(false);
-
+  const filteredOptions =
+    searchTerm.length === 0
+      ? options
+      : options.filter(option =>
+          option.toLowerCase().includes(searchTerm.toLowerCase())
+        );
   const handleSelect = (value: string) => {
     //if multi-select, add/remove from selection array accordingly
     if (multiple) {
@@ -63,7 +68,13 @@ const Dropdown = ({
         className={`${expanded ? " max-h-[150px] opacity-100" : " max-h-[0px] opacity-0"} absolute right-0  w-fit min-w-[100px] border overflow-y-auto border-slate-200 transition-all duration-500`}
       >
         <div className=" flex flex-col justify-between items-start">
-          {options.map(option => (
+          {/* Search bar */}
+          <DropdownSearch
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            setExpanded={setExpanded}
+          />
+          {filteredOptions.map(option => (
             <DropdownItem
               value={option}
               handleSelect={handleSelect}
