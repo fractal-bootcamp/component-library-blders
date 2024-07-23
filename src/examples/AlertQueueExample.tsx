@@ -24,8 +24,13 @@ export const AlertExamples = () => {
         setAlertQueue(alertQueue.filter(alert => alert.message !== oldAlert.message));
     }
 
+    const sampleAlertSuccess: AlertMessage = { message: "Details Saved Successfully!", urgency: "success" }
+    const sampleAlertInfo: AlertMessage = { message: "New update available.", urgency: "info" }
+    const sampleAlertWarning: AlertMessage = { message: "Your session is about to expire.", urgency: "warning" }
+    const sampleAlertError: AlertMessage = { message: "Failed to save details.", urgency: "error" }
 
-    const sampleAlert: AlertMessage = { message: "Details Saved!", urgency: "success" }
+
+
 
 
     const headerStyle = "text-4xl text-teal-500 font-bold m-3";
@@ -48,10 +53,28 @@ export const AlertExamples = () => {
                 </div>
                 <div>
                     <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => dispatchAlert(sampleAlert)}
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-2"
+                        onClick={() => dispatchAlert(sampleAlertSuccess)}
                     >
-                        Show Alert
+                        Show Success Alert
+                    </button>
+                    <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+                        onClick={() => dispatchAlert(sampleAlertInfo)}
+                    >
+                        Show Info Alert
+                    </button>
+                    <button
+                        className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded m-2"
+                        onClick={() => dispatchAlert(sampleAlertWarning)}
+                    >
+                        Show Warning Alert
+                    </button>
+                    <button
+                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2"
+                        onClick={() => dispatchAlert(sampleAlertError)}
+                    >
+                        Show Error Alert
                     </button>
                 </div>
                 <AlertQueue alerts={alertQueue} onRemove={(alert) => removeAlert(alert)} />
