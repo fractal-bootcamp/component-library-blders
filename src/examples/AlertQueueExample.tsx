@@ -20,7 +20,12 @@ export const AlertExamples = () => {
         setAlertQueue([...alertQueue, alert])
     }
 
-    const sampleAlert: AlertMessage = { message: "hello", urgency: "success" }
+    const removeAlert = (oldAlert: AlertMessage) => {
+        setAlertQueue(alertQueue.filter(alert => alert.message !== oldAlert.message));
+    }
+
+
+    const sampleAlert: AlertMessage = { message: "Details Saved!", urgency: "success" }
 
 
     const headerStyle = "text-4xl text-teal-500 font-bold m-3";
@@ -49,7 +54,7 @@ export const AlertExamples = () => {
                         Show Alert
                     </button>
                 </div>
-                <AlertQueue alerts={alertQueue} />
+                <AlertQueue alerts={alertQueue} onRemove={(alert) => removeAlert(alert)} />
 
             </div>
         </>

@@ -11,6 +11,7 @@ export type AlertMessage = {
 
 type AlertQueueProps = {
     alerts: AlertMessage[];
+    onRemove: (alert: AlertMessage) => void
     stacking?: boolean;
     fromTop?: boolean;
     duration?: number;
@@ -21,6 +22,7 @@ type SingleAlertProps = {
     urgency: Urgency;
     fromTop: boolean;
     duration: number;
+    onRemove: (alert: AlertMessage) => void
 }
 
 const bgColors: Record<Urgency, string> = {
@@ -40,6 +42,7 @@ const bgColors: Record<Urgency, string> = {
  */
 export const AlertQueue = ({
     alerts,
+    onRemove,
     stacking = true,
     fromTop = false,
     duration = 3000
@@ -55,6 +58,7 @@ export const AlertQueue = ({
                     urgency={alert.urgency || "info"}
                     fromTop={fromTop}
                     duration={duration}
+                    onRemove={onRemove}
                 />
             ))
             }
@@ -62,9 +66,10 @@ export const AlertQueue = ({
     );
 }
 
-const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000 }: SingleAlertProps) => {
+const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000, onRemove }: SingleAlertProps) => {
 
     const [isVisible, setIsVisible] = useState(true);
+
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -104,6 +109,7 @@ const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000 }: 
         pr-3
         rounded-lg 
         shadow-lg
+        min-w-[200px]
         ${bgColor}
     `;
 
@@ -118,9 +124,18 @@ const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000 }: 
                     transition={{ duration: 0.5 }}
                     className={alertClass}
                 >
-                    <div className="flex flex-row">
+                    <div className="flex flex-row pb-2">
                         {ActiveIcon ?? ActiveIcon}
                         {message}
+                    </div>
+                    <div className="flex flex-row justify-center">
+                        <button
+                            className="text-gray-400 text-xs text-bold border border-gray-400 rounded p-1 px-2"
+                            onClick={() => onRemove({ message: message })}
+                        >
+                            Dismiss
+                        </button>
+
                     </div>
 
                 </motion.div>)
