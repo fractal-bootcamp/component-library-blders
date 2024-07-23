@@ -4,14 +4,16 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import DropdownSearch from "./DropdownSearch";
 interface DropdownProps {
   options: string[];
-  multiple: boolean;
   selected: string[];
+  multiple?: boolean;
+  disabled?: boolean;
   setSelected: (selected: string[]) => void;
 }
 const Dropdown = ({
   options, //list of selectable options
-  multiple, //flag for multi/single selection
   selected, //array of current selection passed in from parent state
+  multiple = false, //flag for multi/single selection
+  disabled = false,
   setSelected //selected setter function to update parent state
 }: DropdownProps) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,8 +47,8 @@ const Dropdown = ({
     >
       {/* Dropdown header/unexpanded display */}
       <div
-        className={`${selected.length === 0 ? "text-gray-400" : "text-black"} flex justify-between items-center w-[150px] pl-4 pr-2 py-2 border border-slate-500 rounded-lg`}
-        onClick={() => setExpanded(!expanded)}
+        className={`${selected.length === 0 ? "text-gray-400" : "text-black"} ${disabled ? "text-gray-400 bg-slate-200" : ""} flex justify-between items-center w-[150px] pl-4 pr-2 py-2 border border-slate-500 rounded-lg`}
+        onClick={() => !disabled && setExpanded(!expanded)}
       >
         <div className="text-nowrap overflow-hidden ">
           {selected.length === 0

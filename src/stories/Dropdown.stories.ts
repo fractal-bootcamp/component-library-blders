@@ -31,12 +31,22 @@ type Story = StoryObj<typeof meta>;
 export const Single: Story = {
   args: {
     options: sampleDropdownOptions,
-    multiple: false
+    multiple: false,
+    disabled: false
   }
 };
+
 export const Multi: Story = {
   args: {
     options: sampleDropdownOptions,
-    multiple: true
+    multiple: true,
+    disabled: false
+  }
+};
+export const Disabled: Story = {
+  args: {
+    options: sampleDropdownOptions,
+    multiple: true,
+    disabled: true
   }
 };

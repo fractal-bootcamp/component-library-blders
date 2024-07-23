@@ -2,9 +2,14 @@ import { useState } from "react";
 import Dropdown from "../components/Dropdown";
 export interface DropdownParentProps {
   options: string[];
-  multiple?: boolean;
+  multiple: boolean;
+  disabled: boolean;
 }
-const DropdownParent = ({ options, multiple = false }: DropdownParentProps) => {
+const DropdownParent = ({
+  options,
+  multiple,
+  disabled
+}: DropdownParentProps) => {
   const [selected, setSelected] = useState<string[]>([]);
   return (
     <div className="flex flex-col gap-2 items-start justify-start">
@@ -12,6 +17,7 @@ const DropdownParent = ({ options, multiple = false }: DropdownParentProps) => {
         <Dropdown
           options={options}
           multiple={multiple}
+          disabled={disabled}
           selected={selected}
           setSelected={setSelected}
         />
