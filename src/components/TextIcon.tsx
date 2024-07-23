@@ -15,18 +15,20 @@ import {
 
 
 export const icons = {
-    lock: BiLockAlt,
     at: BiAt,
-    cheese: BiCheese,
     card: BiCreditCard,
+    cheese: BiCheese,
+    check: BiCheck,
     dollar: BiDollar,
     euro: BiEuro,
-    reddit: BiLogoReddit,
     error: BiSolidMessageAltError,
-    check: BiCheck,
+    game: BiGame,
+    lock: BiLockAlt,
+    reddit: BiLogoReddit,
     rocket: BiRocket,
     smiley: BiSmile,
-    game: BiGame,
+    success: BiCheck, // same as check
+    warning: BiSolidMessageAltError // same as error
 }
 
 const iconColors = {
