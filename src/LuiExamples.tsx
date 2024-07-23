@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextInput } from "./components/TextInput";
-import { AlertQueue } from "./components/Alert";
+import { AlertExamples } from "./examples/AlertQueueExample";
 
 export const LuiExamples = () => {
 
@@ -8,14 +8,6 @@ export const LuiExamples = () => {
     const headerStyle = "text-4xl text-teal-500 font-bold m-3";
     const subheadStyle = "text-xl text-purple-700 font-bold m-3";
     const sampleIcon = "cheese"
-
-    const [showAlert, setShowAlert] = useState<boolean>(false);
-
-    const handleShowAlert = () => {
-        setShowAlert(true);
-        setTimeout(() => setShowAlert(false), 4000); // Reset showAlert after 2 seconds
-    };
-
 
     return (
         <>
@@ -50,19 +42,8 @@ export const LuiExamples = () => {
                 <div>
                     <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='suffixIcon' suffixIcon={sampleIcon} />
                 </div>
-                <AlertQueue message="hello" urgency="success" />
-                <div className={subheadStyle}>
-                    Button to trigger Alert:
-                </div>
-                <div>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => handleShowAlert()}
-                    >
-                        Show Alert
-                    </button>
-                </div>
-                {showAlert && <AlertQueue message="hello" urgency="success" duration={2000} fromTop={true} />}
+
+                <AlertExamples />
 
             </div>
         </>

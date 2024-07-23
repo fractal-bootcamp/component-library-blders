@@ -6,14 +6,24 @@ import { AnimatePresence, motion } from "framer-motion";
 type Urgency = "info" | "success" | "warning" | "error"
 
 
-type AlertInputProps = {
+export type AlertMessage = {
     message: string;
     urgency?: Urgency;
-    multiMessage?: "stack" | "queue"
+}
+
+type AlertQueueProps = {
+    alerts: AlertMessage[];
+    stacking?: boolean;
     fromTop?: boolean;
     duration?: number;
 }
 
+type SingleAlertProps = {
+    message: string;
+    urgency: Urgency;
+    fromTop: boolean;
+    duration: number;
+}
 
 const bgColors: Record<Urgency, string> = {
     info: "bg-blue-200",
@@ -38,24 +48,7 @@ const bgColors: Record<Urgency, string> = {
 
 
 
-
-/**
- * A toast for transient messages.
-
-- Different type defaults (success, error, warning, info)
-- Auto-dismiss with customizable duration
-- Manual dismiss button
-- Display options for multiple notifications (all at once, queue, etc)
-- Slide-in from the top or bottom on show
-- Slide-out on dismiss
- */
-export const AlertQueue = ({
-    message,
-    urgency = "info",
-    multiMessage = "stack",
-    fromTop = false,
-    duration = 3000
-}: AlertInputProps) => {
+const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000 }: SingleAlertProps) => {
 
     const [isVisible, setIsVisible] = useState(true);
 
@@ -100,6 +93,8 @@ export const AlertQueue = ({
         ${bgColor}
     `;
 
+    console.log(`SHOWING ALERT: ${message}, URGENCY: ${urgency}`)
+
 
     return (
         <AnimatePresence>
@@ -119,5 +114,48 @@ export const AlertQueue = ({
                 </motion.div>)
             }
         </AnimatePresence>
+    );
+}
+
+/**
+ * A toast for transient messages.
+
+- Different type defaults (success, error, warning, info)
+- Auto-dismiss with customizable duration
+- Manual dismiss button
+- Display options for multiple notifications (all at once, queue, etc)
+- Slide-in from the top or bottom on show
+- Slide-out on dismiss
+ */
+export const AlertQueue = ({
+    alerts,
+    fromTop = false,
+    duration = 3000
+}: AlertQueueProps) => {
+
+    // const [isVisible, setIsVisible] = useState(true);
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setIsVisible(false);
+    //     }, duration);
+
+    //     return () => clearTimeout(timer);
+    // }, [duration]);
+
+
+    return (
+        <>
+            {alerts.map((alert) => (
+                <Alert
+                    key={alert.message + Date.now()}
+                    message={alert.message}
+                    urgency={alert.urgency || "info"}
+                    fromTop={fromTop}
+                    duration={duration}
+                />
+            ))
+            }
+        </>
     );
 }
