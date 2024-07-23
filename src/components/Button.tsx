@@ -1,5 +1,5 @@
 import { BiGame, BiRocket, BiSmile } from "react-icons/bi";
-// import Tooltip from "./Tooltip";
+import Tooltip from "./Tooltip";
 import { useState } from "react";
 
 type Icon = 'rocket' | 'smiley' | 'game'
@@ -70,20 +70,20 @@ export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = '
     const iconClasses = iconPosition === 'left' ? 'mr-2' : 'ml-2';
 
     return (
-        // <Tooltip tipContent={tooltip} position={tooltipPosition}>
-        <button
-            className={buttonClasses}
-            disabled={isDisabled || isLoading}
-            onClick={handleClick}
-        >{loading ? 'Loading...' : (
-            <>
-                {icon && iconPosition === 'left' && <span className={iconClasses}><Icon name={icon} /></span>}
-                {textContent}
-                {icon && iconPosition === 'right' && <span className={iconClasses}><Icon name={icon} /></span>}
-            </>
-        )}
-        </button>
-        // </Tooltip>
+        <Tooltip tipContent={tooltip} position={tooltipPosition}>
+            <button
+                className={buttonClasses}
+                disabled={isDisabled || isLoading}
+                onClick={handleClick}
+            >{loading ? 'Loading...' : (
+                <>
+                    {icon && iconPosition === 'left' && <span className={iconClasses}><Icon name={icon} /></span>}
+                    {textContent}
+                    {icon && iconPosition === 'right' && <span className={iconClasses}><Icon name={icon} /></span>}
+                </>
+            )}
+            </button>
+        </Tooltip>
     )
 }
 
