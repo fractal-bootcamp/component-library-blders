@@ -1,4 +1,4 @@
-const SampleDropdownItens = [
+export const sampleDropdownItems = [
   <li>Item 1</li>,
   <li>Item 2</li>,
   <li>Item 3</li>,
@@ -13,4 +13,3 @@ const SampleDropdownItens = [
   <li>Item 12</li>,
   <li>Item 13</li>
 ];
-export default SampleDropdownItens;

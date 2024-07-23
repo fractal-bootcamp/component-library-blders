@@ -1,32 +1,10 @@
-import { sampleDropdownItems } from "../sampleData/DropdownSample";
+import DropdownItem from "./DropdownItem";
 interface DropdownProps {
   children: string[];
   selectionMode: "single" | "multiple";
   selection: number;
   setSelection: (index: number) => void;
 }
-
-import React, { useState } from "react";
-interface DropdownItemProps {
-  value: string;
-  onSelect: (value: string) => void;
-  selected: boolean;
-}
-const DropdownItem = ({ value, onSelect, selected }: DropdownItemProps) => {
-  const classes = {
-    selected: "bg-teal-500 text-white",
-    unselected: "bg-white text-gray-900"
-  };
-
-  return (
-    <div
-      className={`${classes[selected ? "selected" : "unselected"]} px-4 py-2 cursor-pointer`}
-      onClick={() => onSelect(value)}
-    >
-      {value}
-    </div>
-  );
-};
 
 interface DropdownProps {
   options: string[];
@@ -35,22 +13,38 @@ interface DropdownProps {
   setSelected: (selected: string[]) => void;
 }
 const Dropdown = ({
-  options,
-  multiple,
-  selected,
-  setSelected
+  options, //list of selectable options
+  multiple, //flag for multi/single selection
+  selected, //array of current selection passed in from parent state
+  setSelected //selected setter function to update parent state
 }: DropdownProps) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  //TODO: implement search functionality
+  // const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSelect = (value: string) => {
+    //if multi-select, add/remove from selection array accordingly
+    if (multiple) {
+      if (selected.includes(value)) {
+        setSelected(selected.filter(item => item !== value));
+      } else {
+        setSelected([...selected, value]);
+      }
+    }
+    //if single-select, set selection to the value
+    else {
+      setSelected([value]);
+    }
+  };
   return (
-    <div>
+    <div className=" flex flex-col justify-between items-start">
       {options.map(option => (
         <DropdownItem
           value={option}
-          onSelect={handleSelect}
+          handleSelect={handleSelect}
           selected={selected.includes(option)}
         />
       ))}
     </div>
   );
 };
+export default Dropdown;
