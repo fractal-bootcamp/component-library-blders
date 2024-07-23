@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextInput } from "./components/TextInput";
+import { AlertExamples } from "./examples/AlertQueueExample";
 
 export const LuiExamples = () => {
 
@@ -41,6 +42,9 @@ export const LuiExamples = () => {
                 <div>
                     <TextInput value={dummyInputText} onChange={setDummyInputText} placeholderText='suffixIcon' suffixIcon={sampleIcon} />
                 </div>
+
+                <AlertExamples />
+
             </div>
         </>
     )
