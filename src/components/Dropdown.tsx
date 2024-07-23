@@ -31,23 +31,29 @@ const Dropdown = ({
       setSelected(selected[0] === value ? [] : [value]);
     }
   };
+  const maxOptionLength = 14;
   return (
     <div className="text-xs cursor-pointer relative ">
       {/* Dropdown header/unexpanded display */}
       <div
-        className={`${selected.length === 0 ? "text-gray-400" : "text-black"} flex justify-between w-[150px] px-4 py-2 border border-slate-500 rounded-lg`}
+        className={`${selected.length === 0 ? "text-gray-400" : "text-black"} flex justify-between items-center w-[150px] px-4 py-2 border border-slate-500 rounded-lg`}
+        tabIndex={0}
         onClick={() => setExpanded(!expanded)}
         onBlur={() => setExpanded(false)}
       >
-        {selected.length === 0
-          ? "Select..."
-          : selected.length === 1
-            ? selected[0]
-            : `${selected.length} selected`}
+        <div className="text-nowrap overflow-hidden ">
+          {selected.length === 0
+            ? "Select..."
+            : selected.length === 1
+              ? selected[0].length > maxOptionLength
+                ? selected[0].slice(0, maxOptionLength) + "..."
+                : selected[0]
+              : `${selected.length} selected`}
+        </div>
         {expanded ? (
-          <ChevronUp className="text-black ml-2 h-4 w-4" />
+          <ChevronUp className="text-black ml-2 h-4 w-4 min-w-4" />
         ) : (
-          <ChevronDown className="text-black ml-2 h-4 w-4" />
+          <ChevronDown className="text-black ml-2 h-4 w-4 min-w-4" />
         )}
       </div>
       {/* Dropdown list */}
