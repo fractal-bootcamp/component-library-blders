@@ -81,19 +81,19 @@ export const TextInput = ({
     `;
 
     return (
-        <div className="flex flex-col">
-            <div className="flex flex-row items-center">
-                {LeftIcon && <div className="absolute left-3">{LeftIcon}</div>}
-                <input
-                    type={isPassword ? "password" : "text"}
-                    value={value}
-                    onChange={(e) => onChange(e.target.value)}
-                    placeholder={placeholderTextFinal}
-                    disabled={isDisabled}
-                    className={`${inputBoxStyle} ${LeftIcon ? "pl-12" : ""} ${RightIcon ? "pr-12" : ""}`}
-                />
-                {RightIcon && <div className="absolute right-3">{RightIcon}</div>}
-            </div>
+
+        <div className="flex flex-row items-center">
+            {LeftIcon && <div className="absolute left-3">{LeftIcon}</div>}
+            <input
+                type={isPassword ? "password" : "text"}
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                placeholder={placeholderTextFinal}
+                disabled={isDisabled}
+                className={inputBoxStyle}
+            />
+            {RightIcon && <div className="absolute right-3">{RightIcon}</div>}
         </div>
+
     );
 }
