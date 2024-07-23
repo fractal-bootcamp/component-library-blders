@@ -1,5 +1,6 @@
 import './index.css'
 import { FirstButton } from './components/Button'
+import { LuiExamples } from './LuiExamples'
 
 
 function App() {
@@ -15,6 +16,11 @@ function App() {
           iconPosition='left'
         />
       </div>
+      <div>
+        <LuiExamples />
+      </div>
+
+
     </>
   )
 }
