@@ -21,6 +21,7 @@ export const iconOptions = [
   "reddit",
   "error",
   "check",
+  "warning",
 ] as const;
 
 export type IconOption = (typeof iconOptions)[number];
@@ -38,6 +39,7 @@ export const fetchIcon = (name: IconOption | undefined): IconType | null => {
     reddit: BiLogoReddit,
     error: BiSolidMessageAltError,
     check: BiCheck,
+    warning: BiSolidMessageAltError,
   };
 
   return icons[name as IconOption] || null;
