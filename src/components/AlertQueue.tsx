@@ -20,10 +20,8 @@ type AlertQueueProps = {
 type SingleAlertProps = {
     message: string;
     urgency: Urgency;
-    fromTop: boolean;
     duration: number;
     onRemove: (alert: AlertMessage) => void;
-    stackIndex: number;
 }
 
 const bgColors: Record<Urgency, string> = {
@@ -49,26 +47,34 @@ export const AlertQueue = ({
     duration = 3000
 }: AlertQueueProps) => {
 
+    const uniqueAlerts = alerts.reduce((acc: AlertMessage[], current) => {
+        const x = acc.findIndex(item => item.message === current.message);
+        if (x === -1) {
+            return acc.concat([current]);
+        } else {
+            acc.splice(x, 1);
+            return acc.concat([current]);
+        }
+    }, []);
+
+
     return (
         <div className={`fixed ${fromTop ? 'top-4' : 'bottom-4'} left-1/2 transform -translate-x-1/2`}>
             <AnimatePresence>
-                {alerts.map((alert, index) => (
+                {uniqueAlerts.map((alert, index) => (
                     <motion.div
                         key={alert.message + index}
                         initial={{ y: fromTop ? -100 : 100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: fromTop ? -100 : 100, opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        className={`mb-4 ${fromTop ? `mt-${index * 60}` : `mb-${index * 60}`}`}
+                        className={`mb-4 ${stacking ? (fromTop ? `mt-${index * 60}` : `mb-${index * 60}`) : ''}`}
                     >
                         <Alert
-                            key={alert.message + index}
                             message={alert.message}
                             urgency={alert.urgency || "info"}
-                            fromTop={fromTop}
                             duration={duration}
                             onRemove={onRemove}
-                            stackIndex={10}
                         />
                     </motion.div>
                 ))
@@ -78,16 +84,15 @@ export const AlertQueue = ({
     );
 }
 
-const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000, onRemove, stackIndex }: SingleAlertProps) => {
+const Alert = ({ message, urgency, duration, onRemove }: SingleAlertProps) => {
 
     const [isVisible, setIsVisible] = useState(true);
-
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsVisible(false);
+            onRemove({ message });
         }, duration);
-
         return () => clearTimeout(timer);
     }, [duration]);
 
@@ -106,25 +111,16 @@ const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000, on
 
     const bgColor = bgColors[urgency] || "bg-gray-200";
 
-    const offscreenPosition = fromTop ? { y: -100, opacity: 0 } : { y: 100, opacity: 0 }
-
-    const position = fromTop ? "top-4" : "bottom-4"
-
-    const stackOffset = stackIndex * 60; // Adjust this value based on the height of your alerts and desired spacing
-
-
     const alertClass = `
-        
         py-3 
         pr-3
         rounded-lg 
         shadow-lg
         min-w-[200px]
         ${bgColor}
-        ${fromTop ? `mt-${stackOffset}` : `mb-${stackOffset}`}
-
     `;
 
+    const dismissButtonClass = "text-gray-400 text-xs text-bold border border-gray-400 rounded p-1 px-2"
 
     return (
         <>
@@ -136,7 +132,7 @@ const Alert = ({ message, urgency = "info", fromTop = false, duration = 3000, on
                     </div>
                     <div className="flex flex-row justify-center">
                         <button
-                            className="text-gray-400 text-xs text-bold border border-gray-400 rounded p-1 px-2"
+                            className={dismissButtonClass}
                             onClick={() => onRemove({ message: message })}
                         >
                             Dismiss

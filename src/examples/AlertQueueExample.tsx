@@ -1,16 +1,6 @@
 import { useState } from "react";
 import { AlertMessage, AlertQueue } from "../components/AlertQueue";
 
-
-
-// array of alert objects
-// to add an alert, you can have an "Alert Provider", which is global
-// const [alertQueue, setAlertQueue] = useState([])
-// const dispatchAlert = (alert) => setAlertQueue([...alertQueue, alert])
-// const removeAlert = (alert) => ...
-// <Alert onRemove={() => removeAlert()} ...
-
-
 export const AlertExamples = () => {
 
     const [alertQueue, setAlertQueue] = useState<AlertMessage[]>([])
@@ -28,9 +18,6 @@ export const AlertExamples = () => {
     const sampleAlertInfo: AlertMessage = { message: "New update available.", urgency: "info" }
     const sampleAlertWarning: AlertMessage = { message: "Your session is about to expire.", urgency: "warning" }
     const sampleAlertError: AlertMessage = { message: "Failed to save details.", urgency: "error" }
-
-
-
 
 
     const headerStyle = "text-4xl text-teal-500 font-bold m-3";
@@ -77,7 +64,10 @@ export const AlertExamples = () => {
                         Show Error Alert
                     </button>
                 </div>
-                <AlertQueue alerts={alertQueue} onRemove={(alert) => removeAlert(alert)} />
+                <AlertQueue alerts={alertQueue} onRemove={(alert) => removeAlert(alert)} stacking={false} />
+
+                <AlertQueue alerts={alertQueue} onRemove={(alert) => removeAlert(alert)} fromTop={true} />
+
 
             </div>
         </>
