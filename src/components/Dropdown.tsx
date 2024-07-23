@@ -1,12 +1,5 @@
 import DropdownItem from "./DropdownItem";
 interface DropdownProps {
-  children: string[];
-  selectionMode: "single" | "multiple";
-  selection: number;
-  setSelection: (index: number) => void;
-}
-
-interface DropdownProps {
   options: string[];
   multiple: boolean;
   selected: string[];
