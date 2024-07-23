@@ -27,7 +27,7 @@ const imageContent = () =>
   });
 export const TextTip: Story = {
   args: {
-    children: "Child Text",
+    children: "Tooltip Wrapper Child Text",
     tipContent: "Tooltip Text",
     position: "top"
   }

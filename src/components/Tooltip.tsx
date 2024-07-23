@@ -38,7 +38,7 @@ export default function Tooltip({
       {/* The tooltip */}
       {tipContent && (
         <div
-          className={`${positionClass} ${show ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ease-in-out flex justify-center items-center text-center w-max  bg-gray-800 text-white p-2 rounded-md shadow-lg`}
+          className={`${positionClass} ${show ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ease-in-out flex justify-center items-center text-center text-xs w-max  bg-gray-800 text-white p-2 rounded-md shadow-lg`}
         >
           {tipContent}
         </div>
