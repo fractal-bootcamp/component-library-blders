@@ -1,7 +1,5 @@
 import './index.css'
 import { FirstButton } from './components/Button'
-import { useState } from 'react'
-import { BiGame, BiRocket, BiSmile } from 'react-icons/bi'
 
 
 function App() {

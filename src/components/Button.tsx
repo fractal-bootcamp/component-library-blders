@@ -27,7 +27,7 @@ export const Icon = ({ name }: { name: Icon }) => {
     }
 }
 
-export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = 'primary', size = 'medium', onClick, textContent, icon, iconPosition = 'left' }: ButtonProps) => {
+export const FirstButton = ({ tooltip = "", tooltipPosition = "top", variant = 'primary', size = 'medium', textContent, icon, iconPosition = 'left' }: ButtonProps) => {
     const [isDisabled, setIsDisabled] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
