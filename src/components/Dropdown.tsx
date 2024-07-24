@@ -9,6 +9,7 @@ interface DropdownProps {
   disabled?: boolean;
   setSelected: (selected: string[]) => void;
 }
+const MAX_OPTION_LENGTH = 15;
 const Dropdown = ({
   options, //list of selectable options
   selected, //array of current selection passed in from parent state
@@ -38,7 +39,6 @@ const Dropdown = ({
       setSelected(selected[0] === value ? [] : [value]);
     }
   };
-  const maxOptionLength = 15;
   return (
     <div
       className="text-xs cursor-pointer relative "
@@ -54,8 +54,8 @@ const Dropdown = ({
           {selected.length === 0
             ? "Select..."
             : selected.length === 1
-              ? selected[0].length > maxOptionLength
-                ? selected[0].slice(0, maxOptionLength) + "..."
+              ? selected[0].length > MAX_OPTION_LENGTH
+                ? selected[0].slice(0, MAX_OPTION_LENGTH) + "..."
                 : selected[0]
               : `${selected.length} selected`}
         </div>
