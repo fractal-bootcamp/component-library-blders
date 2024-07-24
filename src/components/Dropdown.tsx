@@ -19,6 +19,17 @@ const Dropdown = ({
 }: DropdownProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const dropDownDisplayText = () => {
+    if (selected.length === 0) {
+      return "Select...";
+    } else if (selected.length === 1) {
+      return selected[0].length > MAX_OPTION_LENGTH
+        ? selected[0].slice(0, MAX_OPTION_LENGTH) + "..."
+        : selected[0];
+    } else {
+      return `${selected.length} selected`;
+    }
+  };
   const filteredOptions =
     searchTerm.length === 0
       ? options
@@ -52,13 +63,7 @@ const Dropdown = ({
         onClick={() => !disabled && setExpanded(!expanded)}
       >
         <div className="text-nowrap overflow-hidden ">
-          {selected.length === 0
-            ? "Select..."
-            : selected.length === 1
-              ? selected[0].length > MAX_OPTION_LENGTH
-                ? selected[0].slice(0, MAX_OPTION_LENGTH) + "..."
-                : selected[0]
-              : `${selected.length} selected`}
+          {dropDownDisplayText()}
         </div>
         {expanded ? (
           <ChevronUp className="text-black ml-2 h-4 w-4 min-w-4" />
@@ -78,8 +83,9 @@ const Dropdown = ({
             setExpanded={setExpanded}
           />
           {filteredOptions.length > 0 ? (
-            filteredOptions.map(option => (
+            filteredOptions.map((option, index) => (
               <DropdownItem
+                key={`${option}-${index.toString().padStart(3, "0")}`}
                 value={option}
                 handleSelect={handleSelect}
                 selected={selected.includes(option)}
