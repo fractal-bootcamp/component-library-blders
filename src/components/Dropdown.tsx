@@ -42,6 +42,7 @@ const Dropdown = ({
   return (
     <div
       className="text-xs cursor-pointer relative "
+      // tabIndex makes the dropdown focusable so that onBlur can close it
       tabIndex={0}
       onBlur={() => setExpanded(false)}
     >
