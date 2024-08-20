@@ -73,7 +73,7 @@ const Dropdown = ({
       </div>
       {/* Dropdown list */}
       <div
-        className={`${expanded ? " max-h-[150px] opacity-100 " : " max-h-[0px] opacity-0"} absolute left-0  w-fit min-w-[100px] border overflow-y-auto border-slate-200 transition-all duration-500`}
+        className={`${expanded ? " max-h-[150px] opacity-100 " : " max-h-[0px] opacity-0"} absolute left-0 w-fit min-w-[100px] max-w-[100px] overflow-x-auto border overflow-y-auto border-slate-200 transition-all duration-500`}
       >
         <div className=" flex flex-col justify-between items-start">
           {/* Search bar */}

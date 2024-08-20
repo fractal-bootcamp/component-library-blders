@@ -12,7 +12,7 @@ const DropdownSearch = ({
     <div className={`bg-slate-50 w-full cursor-pointer`}>
       <input
         type="text"
-        className="bg-slate-200 px-4 py-2 "
+        className="bg-slate-200 w-full pl-4 pr-6 py-2 "
         placeholder="Search..."
         value={searchTerm}
         onFocus={() => setExpanded(true)}

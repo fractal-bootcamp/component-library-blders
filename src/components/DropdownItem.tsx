@@ -11,7 +11,7 @@ const DropdownItem = ({ value, handleSelect, selected }: DropdownItemProps) => {
 
   return (
     <div
-      className={`${classes[selected ? "selected" : "unselected"]} transform transition-all duration-200 px-4 py-2 w-full cursor-pointer`}
+      className={`${classes[selected ? "selected" : "unselected"]} break-words transform transition-all duration-200 px-4 py-2 w-full cursor-pointer`}
       onClick={() => handleSelect(value)}
     >
       {value}
