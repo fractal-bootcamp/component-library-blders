@@ -4,5 +4,6 @@ export const sampleDropdownOptions = [
   "Item 3",
   "Item 4",
   "Item 5",
-  "Item 6"
+  "Item 6",
+  "One longer item that is a longr string super long get truncated my guy",
 ];
